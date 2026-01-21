@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas–Notion Sync | Kyle Ortzow</title>
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/components.css">
+    <link rel="stylesheet" href="../src/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <nav-content>
+            <a href="../index.html" class="logo">Kyle Ortzow</a>
+            <a href="../index.html" style="margin-left: auto;">Back to Portfolio</a>
+        </nav-content>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Canvas–Notion Sync</h1>
+            <p class="hero-meta">Chrome Extension | September 2025 - Present</p>
+            <div class="tech-stack">
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Chrome APIs</span>
+                <span class="tech-badge">AES-GCM Encryption</span>
+                <span class="tech-badge">REST APIs</span>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
+
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>Canvas–Notion Sync is a Chrome extension that automatically synchronizes Canvas assignments into Notion on a 30-minute schedule. It bridges two popular productivity tools to streamline student workflow.</p>
+            <p>This project demonstrates proficiency in external API integration, encryption, reliability engineering, and building tools that integrate seamlessly with existing workflows.</p>
+        </section>
+
+        <!-- Key Features -->
+        <section>
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Automated Sync</h3>
+                    <p>Fetches Canvas assignments every 30 minutes and automatically syncs them to Notion without manual intervention.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>AES-GCM Encryption</h3>
+                    <p>Implements AES-GCM encryption to protect sensitive data like API keys and credentials stored locally.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rate Limiting</h3>
+                    <p>Engineered robust rate limiting (25 req/s burst, ~10 req/s sustained) to respect API limits and prevent throttling.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Retry & Backoff</h3>
+                    <p>Implements intelligent retry strategies: 429 Retry-After headers, 409 exponential backoff, limited 5xx retries.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Error Handling</h3>
+                    <p>Comprehensive error states with console logging and user-friendly UI error messages for debugging.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Conflict Resolution</h3>
+                    <p>Reduces sync conflicts with batching and sequential fallback strategies.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Highlights -->
+        <section>
+            <h2>Technical Highlights</h2>
+            <div class="highlight-box">
+                <h3>Reliability Engineering</h3>
+                <p>This project showcases production-grade reliability practices: rate limiting respects API constraints, retry/backoff strategies handle transient failures gracefully, and observability (logging + error states) enables debugging.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>Security</h3>
+                <p>Implements AES-GCM encryption for sensitive data at rest, protecting API keys and user credentials from unauthorized access.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>User Experience</h3>
+                <p>Focuses on transparent operation: UI error states inform users of issues, batching reduces conflicts, and sequential fallback ensures data integrity even when APIs are overloaded.</p>
+            </div>
+        </section>
+
+        <!-- What I Learned -->
+        <section>
+            <h2>What I Learned</h2>
+            <ul style="line-height: 2; margin-left: 1.5rem;">
+                <li><strong>API Reliability:</strong> Understanding rate limits, retry strategies, and backoff mechanisms for robust API integrations.</li>
+                <li><strong>Encryption:</strong> Implementing AES-GCM for protecting sensitive credentials and data.</li>
+                <li><strong>Chrome Extension APIs:</strong> Building extensions that interact with multiple web services seamlessly.</li>
+                <li><strong>Observability:</strong> The importance of logging and error states for user support and debugging.</li>
+                <li><strong>Conflict Resolution:</strong> Strategies for handling sync conflicts in distributed systems.</li>
+            </ul>
+        </section>
+
+        <!-- Links -->
+        <section>
+            <h2>Links</h2>
+            <div class="links">
+                <a href="https://github.com/KyleOrtzow1/CanvasNotionSync" target="_blank" class="btn">View on GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="../index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
+    </footer>
+</body>
+</html>

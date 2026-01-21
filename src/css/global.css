@@ -1,0 +1,45 @@
+/* Global Styles & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--light-bg);
+    color: var(--charcoal-brown);
+}
+
+/* Main Container */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Section Titles */
+section {
+    margin-bottom: 6rem;
+}
+
+section > h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--charcoal-brown);
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid rgba(109, 118, 79, 0.15);
+    padding: 2rem;
+    text-align: center;
+    color: var(--slate-grey);
+    font-size: 0.85rem;
+    background: var(--cream);
+}

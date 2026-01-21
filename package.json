@@ -1,0 +1,29 @@
+{
+  "name": "kyleortzow-portfolio",
+  "version": "1.0.0",
+  "description": "Kyle Ortzow's professional portfolio showcasing computer science projects and experience",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "preview": "python -m http.server 8000",
+    "clean": "echo Cleaning build artifacts...",
+    "validate": "echo Validating HTML structure..."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyleOrtzow1/kyleortzow-portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "computer-science",
+    "web-development",
+    "static-site"
+  ],
+  "author": "Kyle Ortzow <kortzow@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KyleOrtzow1/kyleortzow-portfolio/issues"
+  },
+  "homepage": "https://github.com/KyleOrtzow1/kyleortzow-portfolio#readme",
+  "devDependencies": {}
+}

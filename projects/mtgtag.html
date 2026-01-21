@@ -4,261 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MTGTag | Kyle Ortzow</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --slate-grey: #7C8B92;
-            --dim-grey: #6D766E;
-            --charcoal-brown: #303A2C;
-            --granite: #455944;
-            --dusty-olive: #6D764F;
-            --cream: #f5f4f1;
-            --light-bg: #f9f8f6;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--light-bg);
-            color: var(--charcoal-brown);
-        }
-
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: var(--cream);
-            border-bottom: 1px solid rgba(109, 118, 79, 0.2);
-            padding: 1.5rem 2rem;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dusty-olive);
-        }
-
-        nav a {
-            color: var(--charcoal-brown);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--dusty-olive);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(69, 89, 68, 0.1), rgba(109, 118, 79, 0.08));
-            padding: 4rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid rgba(109, 118, 79, 0.15);
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--charcoal-brown);
-        }
-
-        .hero-meta {
-            font-size: 1.1rem;
-            color: var(--slate-grey);
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tech-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: rgba(109, 118, 79, 0.15);
-            color: var(--dusty-olive);
-            font-size: 0.85rem;
-            border-radius: 20px;
-            font-weight: 600;
-        }
-
-        /* Main Content */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        section {
-            margin-bottom: 4rem;
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--charcoal-brown);
-        }
-
-        h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--charcoal-brown);
-        }
-
-        p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            color: var(--charcoal-brown);
-        }
-
-        /* Features */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--cream);
-            padding: 2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(109, 118, 79, 0.15);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        .feature-card h3 {
-            color: var(--dusty-olive);
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            font-size: 0.95rem;
-            color: var(--slate-grey);
-        }
-
-        /* Highlights */
-        .highlight-box {
-            background: linear-gradient(135deg, rgba(109, 118, 79, 0.1), rgba(124, 139, 146, 0.08));
-            border-left: 4px solid var(--dusty-olive);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-        .highlight-box h3 {
-            color: var(--dusty-olive);
-        }
-
-        /* Stats */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat {
-            background: var(--cream);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid rgba(109, 118, 79, 0.15);
-        }
-
-        .stat .number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--dusty-olive);
-        }
-
-        .stat .label {
-            font-size: 0.9rem;
-            color: var(--slate-grey);
-            margin-top: 0.5rem;
-        }
-
-        /* Links */
-        .links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background: var(--dusty-olive);
-            color: var(--cream);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: var(--granite);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--dusty-olive);
-            color: var(--charcoal-brown);
-        }
-
-        .btn-secondary:hover {
-            background: var(--dusty-olive);
-            color: var(--cream);
-        }
-
-        /* Back Link */
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: var(--slate-grey);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--dusty-olive);
-        }
-
-        /* Footer */
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/components.css">
+    <link rel="stylesheet" href="../src/css/responsive.css">
         footer {
             border-top: 1px solid rgba(109, 118, 79, 0.15);
             padding: 2rem;
@@ -296,8 +45,8 @@
     <!-- Navigation -->
     <nav>
         <nav-content>
-            <a href="index.html" class="logo">Kyle Ortzow</a>
-            <a href="index.html" style="margin-left: auto;">Back to Portfolio</a>
+            <a href="../index.html" class="logo">Kyle Ortzow</a>
+            <a href="../index.html" style="margin-left: auto;">Back to Portfolio</a>
         </nav-content>
     </nav>
 
@@ -316,7 +65,7 @@
     </section>
 
     <main>
-        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
 
         <!-- Overview -->
         <section>
@@ -423,7 +172,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
+        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="../index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
     </footer>
 </body>
 </html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Card Search Agent | Kyle Ortzow</title>
+    <link rel="stylesheet" href="../src/css/variables.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    <link rel="stylesheet" href="../src/css/components.css">
+    <link rel="stylesheet" href="../src/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <nav-content>
+            <a href="../index.html" class="logo">Kyle Ortzow</a>
+            <a href="../index.html" style="margin-left: auto;">Back to Portfolio</a>
+        </nav-content>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MTG Card Search Agent</h1>
+            <p class="hero-meta">NLP & LLM Systems | July 2025 - Present</p>
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">OpenAI API</span>
+                <span class="tech-badge">PydanticAI</span>
+                <span class="tech-badge">NLP</span>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
+
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>MTG Card Search Agent is a multi-agent natural-language search system that queries 33k+ Magic: The Gathering cards. Users can search in plain English, and the agent generates Scryfall queries to find the perfect cards.</p>
+            <p>This project demonstrates advanced LLM system design, agent orchestration, evaluation strategies, and performance optimization techniques.</p>
+        </section>
+
+        <!-- Key Features -->
+        <section>
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Natural Language Search</h3>
+                    <p>Convert English queries into Scryfall queries. Ask for "red creatures with flying" and get exactly that.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Iterative Refinement</h3>
+                    <p>Up to 5 refinement loops with evaluator feedback. The agent improves results based on relevance scores.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Parallel Evaluation</h3>
+                    <p>Improved throughput by parallelizing relevance scoring across multiple cards simultaneously.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Smart Caching</h3>
+                    <p>Deduplication and score caching skip previously seen cards, avoiding redundant API calls.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>CLI & Module</h3>
+                    <p>Packaged as an installable Python module with a command-line interface for easy use.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Comprehensive Testing</h3>
+                    <p>pytest suite covering config, events, orchestrator, models, tools, and agents.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Highlights -->
+        <section>
+            <h2>Technical Highlights</h2>
+            <div class="highlight-box">
+                <h3>Agent Orchestration</h3>
+                <p>Multi-agent system coordinating search, evaluation, and refinement. Uses PydanticAI for structured outputs and orchestration, ensuring reliable communication between agents.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>Iterative Refinement Loop</h3>
+                <p>Implements feedback loops where an evaluator agent scores results (1–10 relevance) and guides the search agent to refine queries. Up to 5 iterations improve result quality.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>Performance Optimization</h3>
+                <p>Parallel evaluation processes multiple cards concurrently. Deduplication and caching skip redundant work, significantly reducing execution time.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>Production Packaging</h3>
+                <p>Structured as an installable module with CLI entry points, making it easy to use and distribute.</p>
+            </div>
+        </section>
+
+        <!-- What I Learned -->
+        <section>
+            <h2>What I Learned</h2>
+            <ul style="line-height: 2; margin-left: 1.5rem;">
+                <li><strong>LLM Agent Design:</strong> Building agents that think step-by-step and refine outputs based on feedback.</li>
+                <li><strong>Evaluation Metrics:</strong> Designing relevance scoring systems to guide agent behavior and measure success.</li>
+                <li><strong>Concurrency:</strong> Parallel evaluation for throughput improvement without sacrificing quality.</li>
+                <li><strong>Structured Outputs:</strong> Using Pydantic for type-safe, validated LLM outputs.</li>
+                <li><strong>Testing ML Systems:</strong> Writing pytest suites for complex multi-agent systems.</li>
+            </ul>
+        </section>
+
+        <!-- Links -->
+        <section>
+            <h2>Links</h2>
+            <div class="links">
+                <a href="https://github.com/KyleOrtzow1/SearchAgent" target="_blank" class="btn">View on GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="../index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
+    </footer>
+</body>
+</html>

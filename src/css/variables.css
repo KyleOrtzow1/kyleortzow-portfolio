@@ -1,0 +1,10 @@
+/* CSS Custom Properties */
+:root {
+    --slate-grey: #7C8B92;
+    --dim-grey: #6D766E;
+    --charcoal-brown: #303A2C;
+    --granite: #455944;
+    --dusty-olive: #6D764F;
+    --cream: #f5f4f1;
+    --light-bg: #f9f8f6;
+}
