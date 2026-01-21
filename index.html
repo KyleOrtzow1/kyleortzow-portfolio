@@ -258,6 +258,12 @@
             box-shadow: 0 16px 32px rgba(109, 118, 79, 0.12);
         }
 
+        .projects-container a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
         .project-image {
             width: 100%;
             height: 180px;
@@ -582,50 +588,56 @@
         <section id="projects">
             <h2>Featured Projects</h2>
             <div class="projects-container">
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <div class="project-content">
-                        <h3>Canvas–Notion Sync</h3>
-                        <p class="project-meta">Chrome Extension • Sep 2025 - Present</p>
-                        <p class="project-description">Chrome extension that syncs Canvas assignments into Notion on a 30-minute schedule. Implemented AES-GCM encryption, rate limiting (25 req/s burst), and retry/backoff strategies. Added observability with error logging and UI error states.</p>
-                        <div class="project-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">APIs</span>
-                            <span class="tag">Encryption</span>
-                            <span class="tag">Chrome Extension</span>
+                <a href="canvas-notion-sync.html" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <div class="project-image"></div>
+                        <div class="project-content">
+                            <h3>Canvas–Notion Sync</h3>
+                            <p class="project-meta">Chrome Extension • Sep 2025 - Present</p>
+                            <p class="project-description">Chrome extension that syncs Canvas assignments into Notion on a 30-minute schedule. Implemented AES-GCM encryption, rate limiting (25 req/s burst), and retry/backoff strategies. Added observability with error logging and UI error states.</p>
+                            <div class="project-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">APIs</span>
+                                <span class="tag">Encryption</span>
+                                <span class="tag">Chrome Extension</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <div class="project-content">
-                        <h3>MTG Card Search Agent</h3>
-                        <p class="project-meta">NLP / LLM • Jul 2025 - Present</p>
-                        <p class="project-description">Multi-agent natural-language search system over 33k+ Magic cards. Generates Scryfall queries from English with iterative refinement (up to 5 loops) and evaluator feedback. Improved throughput via parallel evaluation and score caching.</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">OpenAI API</span>
-                            <span class="tag">PydanticAI</span>
-                            <span class="tag">pytest</span>
+                <a href="mtg-search-agent.html" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <div class="project-image"></div>
+                        <div class="project-content">
+                            <h3>MTG Card Search Agent</h3>
+                            <p class="project-meta">NLP / LLM • Jul 2025 - Present</p>
+                            <p class="project-description">Multi-agent natural-language search system over 33k+ Magic cards. Generates Scryfall queries from English with iterative refinement (up to 5 loops) and evaluator feedback. Improved throughput via parallel evaluation and score caching.</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">OpenAI API</span>
+                                <span class="tag">PydanticAI</span>
+                                <span class="tag">pytest</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <div class="project-content">
-                        <h3>MTGTag</h3>
-                        <p class="project-meta">ML Pipeline • Aug 2025 - Present</p>
-                        <p class="project-description">Functional tagging system classifying 33k+ Magic cards into 81 labels. Fine-tuned DistilBERT; achieved 0.91 validation F1 with domain adaptation on card text. Trained on GPU (~2 hours end-to-end).</p>
-                        <div class="project-tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">PyTorch</span>
-                            <span class="tag">Transformers</span>
-                            <span class="tag">scikit-learn</span>
+                <a href="mtgtag.html" style="text-decoration: none; color: inherit;">
+                    <div class="project-card">
+                        <div class="project-image"></div>
+                        <div class="project-content">
+                            <h3>MTGTag</h3>
+                            <p class="project-meta">ML Pipeline • Aug 2025 - Present</p>
+                            <p class="project-description">Functional tagging system classifying 33k+ Magic cards into 81 labels. Fine-tuned DistilBERT; achieved 0.91 validation F1 with domain adaptation on card text. Trained on GPU (~2 hours end-to-end).</p>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">Transformers</span>
+                                <span class="tag">scikit-learn</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 

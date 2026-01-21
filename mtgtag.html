@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTGTag | Kyle Ortzow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --slate-grey: #7C8B92;
+            --dim-grey: #6D766E;
+            --charcoal-brown: #303A2C;
+            --granite: #455944;
+            --dusty-olive: #6D764F;
+            --cream: #f5f4f1;
+            --light-bg: #f9f8f6;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--charcoal-brown);
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--cream);
+            border-bottom: 1px solid rgba(109, 118, 79, 0.2);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dusty-olive);
+        }
+
+        nav a {
+            color: var(--charcoal-brown);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--dusty-olive);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(69, 89, 68, 0.1), rgba(109, 118, 79, 0.08));
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(109, 118, 79, 0.15);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--charcoal-brown);
+        }
+
+        .hero-meta {
+            font-size: 1.1rem;
+            color: var(--slate-grey);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(109, 118, 79, 0.15);
+            color: var(--dusty-olive);
+            font-size: 0.85rem;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal-brown);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--charcoal-brown);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: var(--charcoal-brown);
+        }
+
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(109, 118, 79, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-card h3 {
+            color: var(--dusty-olive);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--slate-grey);
+        }
+
+        /* Highlights */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(109, 118, 79, 0.1), rgba(124, 139, 146, 0.08));
+            border-left: 4px solid var(--dusty-olive);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-box h3 {
+            color: var(--dusty-olive);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(109, 118, 79, 0.15);
+        }
+
+        .stat .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dusty-olive);
+        }
+
+        .stat .label {
+            font-size: 0.9rem;
+            color: var(--slate-grey);
+            margin-top: 0.5rem;
+        }
+
+        /* Links */
+        .links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background: var(--dusty-olive);
+            color: var(--cream);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--granite);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--dusty-olive);
+            color: var(--charcoal-brown);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dusty-olive);
+            color: var(--cream);
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--slate-grey);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--dusty-olive);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(109, 118, 79, 0.15);
+            padding: 2rem;
+            text-align: center;
+            color: var(--slate-grey);
+            font-size: 0.85rem;
+            background: var(--cream);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            main {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <nav-content>
+            <a href="index.html" class="logo">Kyle Ortzow</a>
+            <a href="index.html" style="margin-left: auto;">Back to Portfolio</a>
+        </nav-content>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MTGTag</h1>
+            <p class="hero-meta">Magic: The Gathering Card Functional Tagging System | August 2025 - Present</p>
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">PyTorch</span>
+                <span class="tech-badge">Transformers</span>
+                <span class="tech-badge">NLP</span>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+
+        <!-- Overview -->
+        <section>
+            <h2>Overview</h2>
+            <p>MTGTag is a machine learning pipeline that automatically classifies Magic: The Gathering cards into 81 functional labels. Using fine-tuned DistilBERT, the system achieves 0.91 F1 score on validation data with significant improvements from domain-specific adaptation.</p>
+            <p>This project demonstrates end-to-end machine learning: data preparation, model fine-tuning, GPU training, evaluation, and iteration.</p>
+        </section>
+
+        <!-- Key Stats -->
+        <section>
+            <h2>Project Stats</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="number">33k+</div>
+                    <div class="label">Cards Classified</div>
+                </div>
+                <div class="stat">
+                    <div class="number">81</div>
+                    <div class="label">Functional Labels</div>
+                </div>
+                <div class="stat">
+                    <div class="number">0.91</div>
+                    <div class="label">Validation F1</div>
+                </div>
+                <div class="stat">
+                    <div class="number">~2h</div>
+                    <div class="label">GPU Training Time</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section>
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Fine-Tuned DistilBERT</h3>
+                    <p>Leverages pre-trained DistilBERT for efficient transformer-based classification on Magic card text.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Domain Adaptation</h3>
+                    <p>Large performance gains from domain-specific adaptation on Magic card text and mechanics.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Multi-Label Classification</h3>
+                    <p>Handles 81 functional labels per card, capturing complex card mechanics and abilities.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>GPU Training</h3>
+                    <p>Trained end-to-end on GPU in ~2 hours, demonstrating efficient deep learning workflows.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Rigorous Evaluation</h3>
+                    <p>Evaluated on holdout split (~10%) with threshold and metric iteration for optimal performance.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Production Ready</h3>
+                    <p>Saved model and inference pipeline for easy deployment and reuse.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Highlights -->
+        <section>
+            <h2>Technical Highlights</h2>
+            <div class="highlight-box">
+                <h3>Domain Adaptation</h3>
+                <p>Standard NLP models struggle with Magic card text due to unique terminology and mechanics. The model was adapted using domain-specific training data, leading to large F1 improvements (0.91 final score).</p>
+            </div>
+            <div class="highlight-box">
+                <h3>Multi-Label Classification</h3>
+                <p>Unlike binary or single-label tasks, this system predicts multiple labels per card. This required custom loss functions and threshold tuning to maximize F1 scores.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>Efficient Training</h3>
+                <p>DistilBERT is ~40% faster than BERT with minimal quality loss. Combined with GPU acceleration, training 33k+ cards takes just 2 hours.</p>
+            </div>
+            <div class="highlight-box">
+                <h3>Rigorous Evaluation</h3>
+                <p>Used holdout validation split and iterated on thresholds/metrics. F1 score as primary metric ensures both precision and recall are optimized.</p>
+            </div>
+        </section>
+
+        <!-- What I Learned -->
+        <section>
+            <h2>What I Learned</h2>
+            <ul style="line-height: 2; margin-left: 1.5rem;">
+                <li><strong>Transfer Learning:</strong> Fine-tuning pre-trained models for domain-specific tasks is far more efficient than training from scratch.</li>
+                <li><strong>Multi-Label Classification:</strong> Handling multiple labels per sample requires different loss functions and evaluation metrics.</li>
+                <li><strong>Domain Adaptation:</strong> NLP models need domain-specific data to perform well on specialized text (like Magic card mechanics).</li>
+                <li><strong>GPU Training:</strong> Leveraging GPUs dramatically speeds up training; ~2 hours for 33k+ samples is feasible.</li>
+                <li><strong>Evaluation & Iteration:</strong> Rigorous evaluation with holdout splits and metric tuning leads to robust models.</li>
+            </ul>
+        </section>
+
+        <!-- Links -->
+        <section>
+            <h2>Links</h2>
+            <div class="links">
+                <a href="https://github.com/KyleOrtzow1/MTGTag" target="_blank" class="btn">View on GitHub</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
+    </footer>
+</body>
+</html>
