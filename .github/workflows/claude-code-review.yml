@@ -12,14 +12,15 @@ on:
 
 jobs:
   claude-review:
+    # Security: Only repository OWNER can trigger automated code reviews
     if: github.event.pull_request.author_association == 'OWNER'
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: read
-      issues: read
-      id-token: write
+      contents: write          # Required for code review suggestions
+      pull-requests: write     # Required to post review comments
+      issues: write            # Required to update issue status if needed
+      id-token: write          # Keep for OIDC authentication
 
     steps:
       - name: Checkout repository
