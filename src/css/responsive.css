@@ -9,6 +9,14 @@
         font-size: 0.85rem;
     }
 
+    .hero-wrapper {
+        padding-bottom: 2rem;
+    }
+
+    .hero-wrapper::after {
+        height: 4rem;
+    }
+
     .hero {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -40,5 +48,32 @@
 
     .contact-section {
         padding: 2rem 1.5rem;
+    }
+
+    /* Reduce animation delays on mobile for faster appearance */
+    .skill-card:nth-child(1),
+    .skill-card:nth-child(2),
+    .skill-card:nth-child(3),
+    .skill-card:nth-child(4) {
+        animation-delay: 0.05s;
+    }
+
+    .project-card:nth-child(1),
+    .project-card:nth-child(2),
+    .project-card:nth-child(3) {
+        animation-delay: 0.1s;
+    }
+
+    .experience-item:nth-child(1),
+    .experience-item:nth-child(2),
+    .experience-item:nth-child(3) {
+        animation-delay: 0.05s;
+    }
+
+    .stat-card:nth-child(1),
+    .stat-card:nth-child(2),
+    .stat-card:nth-child(3),
+    .stat-card:nth-child(4) {
+        animation-delay: 0.1s;
     }
 }
