@@ -51,7 +51,6 @@
     .social-link {
         display: inline-flex;
         white-space: nowrap;
-        transform: translateZ(0);
     }
 
     .contact-section {
