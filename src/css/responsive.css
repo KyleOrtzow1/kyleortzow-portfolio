@@ -51,29 +51,21 @@
     }
 
     /* Reduce animation delays on mobile for faster appearance */
-    .skill-card:nth-child(1),
-    .skill-card:nth-child(2),
-    .skill-card:nth-child(3),
-    .skill-card:nth-child(4) {
-        animation-delay: 0.05s;
-    }
+    .skill-card:nth-child(1) { animation-delay: 0.05s; }
+    .skill-card:nth-child(2) { animation-delay: 0.08s; }
+    .skill-card:nth-child(3) { animation-delay: 0.11s; }
+    .skill-card:nth-child(4) { animation-delay: 0.14s; }
 
-    .project-card:nth-child(1),
-    .project-card:nth-child(2),
-    .project-card:nth-child(3) {
-        animation-delay: 0.1s;
-    }
+    .project-card:nth-child(1) { animation-delay: 0.05s; }
+    .project-card:nth-child(2) { animation-delay: 0.08s; }
+    .project-card:nth-child(3) { animation-delay: 0.11s; }
 
-    .experience-item:nth-child(1),
-    .experience-item:nth-child(2),
-    .experience-item:nth-child(3) {
-        animation-delay: 0.05s;
-    }
+    .experience-item:nth-child(1) { animation-delay: 0.05s; }
+    .experience-item:nth-child(2) { animation-delay: 0.08s; }
+    .experience-item:nth-child(3) { animation-delay: 0.11s; }
 
-    .stat-card:nth-child(1),
-    .stat-card:nth-child(2),
-    .stat-card:nth-child(3),
-    .stat-card:nth-child(4) {
-        animation-delay: 0.1s;
-    }
+    .stat-card:nth-child(1) { animation-delay: 0.05s; }
+    .stat-card:nth-child(2) { animation-delay: 0.08s; }
+    .stat-card:nth-child(3) { animation-delay: 0.11s; }
+    .stat-card:nth-child(4) { animation-delay: 0.14s; }
 }
