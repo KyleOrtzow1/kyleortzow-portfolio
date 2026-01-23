@@ -540,7 +540,6 @@ nav a:hover {
     min-height: 50px;
     width: 100%;
     flex-shrink: 0;
-    -webkit-flex-shrink: 0;
     will-change: transform;
 }
 
@@ -553,7 +552,6 @@ nav a:hover {
     border-color: var(--dusty-olive);
     color: white;
     transform: translateY(-3px);
-    -webkit-transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(109, 118, 79, 0.2);
 }
 

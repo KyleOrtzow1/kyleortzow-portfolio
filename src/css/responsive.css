@@ -46,20 +46,14 @@
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: minmax(50px, auto);
         max-width: 100%;
-        -webkit-backface-visibility: hidden;
         position: relative;
         z-index: 1;
     }
 
     .social-link {
         display: inline-flex;
-        -webkit-display: inline-flex;
         white-space: nowrap;
-        -webkit-transform: translateZ(0);
         transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        visibility: visible;
-        opacity: 1;
     }
 
     .contact-section {
