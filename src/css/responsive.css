@@ -49,7 +49,7 @@
     }
 
     .social-link {
-        display: inline-flex;
+        display: flex;
         white-space: nowrap;
     }
 
