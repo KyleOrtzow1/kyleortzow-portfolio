@@ -311,8 +311,8 @@ nav a:hover {
 .project-card:hover .project-image {
     background: linear-gradient(
         135deg,
-        rgba(69, 89, 68, 1.2),
-        rgba(109, 118, 79, 1.2)
+        rgba(69, 89, 68, 1),
+        rgba(109, 118, 79, 1)
     );
     filter: brightness(1.05);
 }
@@ -635,4 +635,16 @@ nav a:hover {
 /* Section headings animation */
 section h2 {
     animation: fadeInUp 0.6s ease-out backwards;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .skill-card,
+    .project-card,
+    .experience-item,
+    .stat-card,
+    section h2 {
+        animation: none;
+        animation-delay: 0s;
+    }
 }
