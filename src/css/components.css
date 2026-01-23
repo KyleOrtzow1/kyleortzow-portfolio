@@ -540,7 +540,6 @@ nav a:hover {
     min-height: 50px;
     width: 100%;
     flex-shrink: 0;
-    will-change: transform;
 }
 
 .social-link:hover {
