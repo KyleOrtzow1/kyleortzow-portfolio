@@ -235,6 +235,80 @@ footer {
     background: var(--cream);
 }
 
+/* Projects List Page */
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.projects-list a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.project-list-item {
+    padding: 1.75rem 1.5rem;
+    border-bottom: 1px solid rgba(109, 118, 79, 0.12);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+}
+
+.project-list-item:first-child {
+    border-top: 1px solid rgba(109, 118, 79, 0.12);
+}
+
+.project-list-item:hover {
+    background: rgba(109, 118, 79, 0.04);
+    padding-left: 2rem;
+}
+
+.project-list-item h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: var(--charcoal-brown);
+    min-width: 220px;
+    flex-shrink: 0;
+}
+
+.project-list-item:hover h3 {
+    color: var(--dusty-olive);
+}
+
+.project-list-item .item-meta {
+    color: var(--slate-grey);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 200px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+}
+
+.project-list-item .item-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--dim-grey);
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.project-list-item .item-arrow {
+    color: var(--slate-grey);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.project-list-item:hover .item-arrow {
+    color: var(--dusty-olive);
+    transform: translateX(4px);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .hero h1 {
@@ -247,6 +321,20 @@ footer {
 
     .features-grid {
         grid-template-columns: 1fr;
+    }
+
+    .project-list-item {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+
+    .project-list-item h3 {
+        min-width: unset;
+    }
+
+    .project-list-item .item-meta {
+        min-width: unset;
     }
 
     main {
