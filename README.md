@@ -137,7 +137,6 @@ MIT License - See LICENSE file for details
 - Email: kortzow@gmail.com
 - GitHub: [@KyleOrtzow1](https://github.com/KyleOrtzow1)
 - LinkedIn: [kyle-ortzow](https://www.linkedin.com/in/kyle-ortzow/)
-- Phone: +1 (510) 362-4688
 - Location: San Francisco, CA
 
 ## Acknowledgments
