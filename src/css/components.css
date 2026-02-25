@@ -375,6 +375,12 @@ nav a:hover {
     transform: scale(1.05);
 }
 
+/* View All Projects Button */
+.view-all-projects {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
 /* Skills Section Background */
 #skills {
     background: linear-gradient(
