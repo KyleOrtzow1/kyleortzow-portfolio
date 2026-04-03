@@ -1,81 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Projects | Kyle Ortzow</title>
-    <link rel="icon" type="image/x-icon" href="../src/assets/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="../src/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="../src/assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="../src/css/variables.css">
-    <link rel="stylesheet" href="../src/css/project-pages.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>All Projects | Kyle Ortzow</title>
+<link rel="icon" type="image/x-icon" href="../src/assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../src/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="../src/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="../src/assets/favicon/site.webmanifest">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        light: '#d2e4d2',
+                        DEFAULT: '#b4cbb4',
+                        dark: '#3f4c58',
+                        accent: '#96b896',
+                        accentDark: '#7ea47e',
+                        textDark: '#111827',
+                        textGray: '#4b5563',
+                        border: '#e5e7eb',
+                        bgLight: '#f9fafb'
+                    }
+                },
+                fontFamily: {
+                    sans: ['Manrope', 'sans-serif'],
+                    mono: ['"Roboto Mono"', 'monospace'],
+                }
+            }
+        }
+    }
+</script>
+<style type="text/tailwindcss">
+    @layer base {
+        body {
+            @apply font-sans bg-brand-bgLight text-brand-textDark antialiased;
+        }
+    }
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+    }
+    .monitor-panel {
+        @apply bg-white border border-brand-border rounded shadow-sm overflow-hidden flex flex-col;
+    }
+    .panel-header {
+        @apply border-b border-brand-border px-3 py-1.5 flex items-center justify-between bg-brand-light/20 text-[10px] uppercase tracking-tighter font-bold text-brand-dark font-mono;
+    }
+    .status-dot {
+        @apply w-2 h-2 rounded-full bg-brand-accent animate-pulse;
+    }
+    .scanline {
+        background: linear-gradient(to bottom, transparent 50%, rgba(180, 203, 180, 0.05) 51%);
+        background-size: 100% 4px;
+        pointer-events: none;
+    }
+</style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <nav-content>
-            <a href="../index.html" class="logo">Kyle Ortzow</a>
-            <a href="../index.html" style="margin-left: auto;">Back to Portfolio</a>
-        </nav-content>
-    </nav>
+<body class="selection:bg-brand-accent selection:text-white">
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>All Projects</h1>
-            <p class="hero-meta">A complete collection of my work</p>
+<!-- Navigation -->
+<nav class="border-b border-brand-border bg-white sticky top-0 z-40 px-4 py-2 flex items-center justify-between text-xs font-mono">
+<div class="flex items-center gap-2 font-bold text-brand-dark uppercase">
+    <a href="../index.html" class="flex items-center gap-2 hover:text-brand-accent transition-colors">
+        <span class="material-symbols-outlined text-sm">terminal</span>
+        Kyle Ortzow // PORTFOLIO
+    </a>
+</div>
+<div class="flex gap-6 uppercase font-bold text-brand-dark">
+    <a class="hover:bg-brand-light px-2 py-1 flex items-center gap-1" href="../index.html">
+        <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Portfolio
+    </a>
+</div>
+</nav>
+
+<main class="p-4 max-w-[1600px] mx-auto">
+<div class="dashboard-grid">
+
+<!-- Hero Panel -->
+<section class="col-span-12 monitor-panel">
+<div class="panel-header">
+    <span>PROJECT_ARCHIVE // ALL_SYSTEMS</span>
+    <span class="material-symbols-outlined text-sm">folder_open</span>
+</div>
+<div class="p-8 md:p-12">
+    <div class="text-[10px] text-brand-accent font-bold mb-2 font-mono">&gt; BROWSING ALL PROJECTS</div>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-brand-dark mb-3 tracking-tighter">All Projects</h1>
+    <p class="text-sm md:text-base text-brand-textGray max-w-2xl leading-relaxed">A complete collection of my work</p>
+</div>
+</section>
+
+<!-- Projects List -->
+<section class="col-span-12 flex flex-col gap-4">
+
+<!-- Project 1: Canvas-Notion Sync -->
+<a href="canvas-notion-sync.html" class="block">
+<article class="monitor-panel hover:-translate-y-1 transition-transform duration-300">
+    <div class="panel-header bg-brand-dark text-white py-2.5 px-4">
+        <span class="text-sm font-bold tracking-tight">Canvas-Notion Sync</span>
+        <span class="material-symbols-outlined text-sm">sync_alt</span>
+    </div>
+    <div class="p-5 flex items-center justify-between gap-6">
+        <div class="flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">Canvas&ndash;Notion Sync</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">Chrome Extension &middot; Sep 2025 &ndash; Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">
+                Syncs Canvas assignments into Notion on a 30-minute schedule with AES-GCM encryption and rate limiting.
+            </p>
         </div>
-    </section>
+        <span class="material-symbols-outlined text-2xl text-brand-accent shrink-0">arrow_forward</span>
+    </div>
+</article>
+</a>
 
-    <main>
-        <a href="../index.html" class="back-link">← Back to Portfolio</a>
+<!-- Project 2: MTG Card Search Agent -->
+<a href="mtg-search-agent.html" class="block">
+<article class="monitor-panel hover:-translate-y-1 transition-transform duration-300">
+    <div class="panel-header bg-brand-dark text-white py-2.5 px-4">
+        <span class="text-sm font-bold tracking-tight">MTG Card Search Agent</span>
+        <span class="material-symbols-outlined text-sm">psychology</span>
+    </div>
+    <div class="p-5 flex items-center justify-between gap-6">
+        <div class="flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">MTG Card Search Agent</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">NLP / LLM &middot; Jul 2025 &ndash; Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">
+                Multi-agent natural-language search over 33k+ Magic cards with iterative refinement and evaluator feedback.
+            </p>
+        </div>
+        <span class="material-symbols-outlined text-2xl text-brand-accent shrink-0">arrow_forward</span>
+    </div>
+</article>
+</a>
 
-        <section>
-            <div class="projects-list">
-                <a href="canvas-notion-sync.html">
-                    <div class="project-list-item">
-                        <h3>Canvas–Notion Sync</h3>
-                        <p class="item-meta">Chrome Extension · Sep 2025 – Present</p>
-                        <p class="item-description">Syncs Canvas assignments into Notion on a 30-minute schedule with AES-GCM encryption and rate limiting.</p>
-                        <span class="item-arrow">→</span>
-                    </div>
-                </a>
+<!-- Project 3: PaperScout -->
+<a href="paperscout.html" class="block">
+<article class="monitor-panel hover:-translate-y-1 transition-transform duration-300">
+    <div class="panel-header bg-brand-dark text-white py-2.5 px-4">
+        <span class="text-sm font-bold tracking-tight">PaperScout</span>
+        <span class="material-symbols-outlined text-sm">auto_stories</span>
+    </div>
+    <div class="p-5 flex items-center justify-between gap-6">
+        <div class="flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">PaperScout</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">AI Research Assistant &middot; Feb 2026 &ndash; Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">
+                AI-powered arXiv research assistant with per-user Durable Object persistence and Llama 3.3 70B summaries.
+            </p>
+        </div>
+        <span class="material-symbols-outlined text-2xl text-brand-accent shrink-0">arrow_forward</span>
+    </div>
+</article>
+</a>
 
-                <a href="mtg-search-agent.html">
-                    <div class="project-list-item">
-                        <h3>MTG Card Search Agent</h3>
-                        <p class="item-meta">NLP / LLM · Jul 2025 – Present</p>
-                        <p class="item-description">Multi-agent natural-language search over 33k+ Magic cards with iterative refinement and evaluator feedback.</p>
-                        <span class="item-arrow">→</span>
-                    </div>
-                </a>
+<!-- Project 4: MTGTag -->
+<a href="mtgtag.html" class="block">
+<article class="monitor-panel hover:-translate-y-1 transition-transform duration-300">
+    <div class="panel-header bg-brand-dark text-white py-2.5 px-4">
+        <span class="text-sm font-bold tracking-tight">MTGTag</span>
+        <span class="material-symbols-outlined text-sm">model_training</span>
+    </div>
+    <div class="p-5 flex items-center justify-between gap-6">
+        <div class="flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">MTGTag</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">ML Pipeline &middot; Aug 2025 &ndash; Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">
+                Classifies 33k+ Magic cards into 81 functional labels using fine-tuned DistilBERT with 0.91 F1 score.
+            </p>
+        </div>
+        <span class="material-symbols-outlined text-2xl text-brand-accent shrink-0">arrow_forward</span>
+    </div>
+</article>
+</a>
 
-                <a href="paperscout.html">
-                    <div class="project-list-item">
-                        <h3>PaperScout</h3>
-                        <p class="item-meta">AI Research Assistant · Feb 2026 – Present</p>
-                        <p class="item-description">AI-powered arXiv research assistant with per-user Durable Object persistence and Llama 3.3 70B summaries.</p>
-                        <span class="item-arrow">→</span>
-                    </div>
-                </a>
+</section>
 
-                <a href="mtgtag.html">
-                    <div class="project-list-item">
-                        <h3>MTGTag</h3>
-                        <p class="item-meta">ML Pipeline · Aug 2025 – Present</p>
-                        <p class="item-description">Classifies 33k+ Magic cards into 81 functional labels using fine-tuned DistilBERT with 0.91 F1 score.</p>
-                        <span class="item-arrow">→</span>
-                    </div>
-                </a>
-            </div>
-        </section>
-    </main>
+</div>
+</main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Kyle Ortzow. Explore more at <a href="../index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
-    </footer>
+<!-- Footer -->
+<footer class="mt-12 border-t border-brand-border bg-white py-6">
+<div class="max-w-[1600px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-textGray uppercase font-bold font-mono">
+    <div>&copy; 2024 Kyle Ortzow. Built with thoughtful design and clean code.</div>
+    <div class="flex gap-4">
+        <span>Server Status: Online</span>
+        <span>Transmission: Secure</span>
+    </div>
+</div>
+</footer>
+
 </body>
 </html>

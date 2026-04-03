@@ -1,122 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas–Notion Sync | Kyle Ortzow</title>
-    <link rel="icon" type="image/x-icon" href="../src/assets/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="../src/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="../src/assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="../src/css/variables.css">
-    <link rel="stylesheet" href="../src/css/project-pages.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Canvas-Notion Sync | Kyle Ortzow</title>
+<link rel="icon" type="image/x-icon" href="../src/assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../src/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="../src/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="../src/assets/favicon/site.webmanifest">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        light: '#d2e4d2',
+                        DEFAULT: '#b4cbb4',
+                        dark: '#3f4c58',
+                        accent: '#96b896',
+                        accentDark: '#7ea47e',
+                        textDark: '#111827',
+                        textGray: '#4b5563',
+                        border: '#e5e7eb',
+                        bgLight: '#f9fafb'
+                    }
+                },
+                fontFamily: {
+                    sans: ['Manrope', 'sans-serif'],
+                    mono: ['"Roboto Mono"', 'monospace'],
+                }
+            }
+        }
+    }
+</script>
+<style type="text/tailwindcss">
+    @layer base {
+        body {
+            @apply font-sans bg-brand-bgLight text-brand-textDark antialiased;
+        }
+    }
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+    }
+    .monitor-panel {
+        @apply bg-white border border-brand-border rounded shadow-sm overflow-hidden flex flex-col;
+    }
+    .panel-header {
+        @apply border-b border-brand-border px-3 py-1.5 flex items-center justify-between bg-brand-light/20 text-[10px] uppercase tracking-tighter font-bold text-brand-dark font-mono;
+    }
+    .scanline {
+        background: linear-gradient(to bottom, transparent 50%, rgba(180, 203, 180, 0.05) 51%);
+        background-size: 100% 4px;
+        pointer-events: none;
+    }
+</style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <nav-content>
-            <a href="../index.html" class="logo">Kyle Ortzow</a>
-            <a href="../index.html" style="margin-left: auto;">Back to Portfolio</a>
-        </nav-content>
-    </nav>
+<body class="selection:bg-brand-accent selection:text-white">
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Canvas–Notion Sync</h1>
-            <p class="hero-meta">Chrome Extension | September 2025 - Present</p>
-            <div class="tech-stack">
-                <span class="tech-badge">JavaScript</span>
-                <span class="tech-badge">Chrome APIs</span>
-                <span class="tech-badge">AES-GCM Encryption</span>
-                <span class="tech-badge">REST APIs</span>
+<!-- Navigation -->
+<nav class="border-b border-brand-border bg-white sticky top-0 z-40 px-4 py-2 flex items-center justify-between text-xs font-mono">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-brand-dark uppercase no-underline">
+        <span class="material-symbols-outlined text-sm">terminal</span>
+        Kyle Ortzow // PORTFOLIO
+    </a>
+    <a href="../index.html" class="uppercase font-bold text-brand-dark hover:bg-brand-light px-2 py-1 no-underline">Back to Portfolio</a>
+</nav>
+
+<main class="p-4 max-w-[1600px] mx-auto">
+<div class="dashboard-grid">
+
+<!-- Hero Panel -->
+<section class="col-span-12 monitor-panel">
+    <div class="panel-header">
+        <span>PROJECT_MODULE // CANVAS_NOTION_SYNC</span>
+        <span class="material-symbols-outlined text-sm">sync_alt</span>
+    </div>
+    <div class="p-8 md:p-12">
+        <div class="text-[10px] text-brand-accent font-bold font-mono mb-3">&gt; CHROME EXTENSION</div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4">Canvas&ndash;Notion Sync</h1>
+        <p class="text-sm text-brand-textGray font-mono mb-6">Chrome Extension | September 2025 - Present</p>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">JavaScript</span>
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Chrome APIs</span>
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">AES-GCM Encryption</span>
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">REST APIs</span>
+        </div>
+    </div>
+</section>
+
+<!-- Overview Panel -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>System_Overview // Description</span>
+        <span class="material-symbols-outlined text-sm">description</span>
+    </div>
+    <div class="p-6 text-sm text-brand-textGray leading-relaxed space-y-4">
+        <p>Canvas&ndash;Notion Sync is a Chrome extension that automatically synchronizes Canvas assignments into Notion on a 30-minute schedule. It bridges two popular productivity tools to streamline student workflow.</p>
+        <p>This project demonstrates proficiency in external API integration, encryption, reliability engineering, and building tools that integrate seamlessly with existing workflows.</p>
+    </div>
+</section>
+
+<!-- Key Features -->
+<section class="col-span-12 mt-4">
+    <div class="panel-header rounded border border-brand-border">
+        <span>Key Features / Capabilities</span>
+        <span class="material-symbols-outlined text-sm">star</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Automated Sync</span>
+            </div>
+            <div class="p-4 text-sm text-brand-textGray leading-relaxed">
+                Fetches Canvas assignments every 30 minutes and automatically syncs them to Notion without manual intervention.
             </div>
         </div>
-    </section>
-
-    <main>
-        <a href="../index.html" class="back-link">← Back to Portfolio</a>
-
-        <!-- Overview -->
-        <section>
-            <h2>Overview</h2>
-            <p>Canvas–Notion Sync is a Chrome extension that automatically synchronizes Canvas assignments into Notion on a 30-minute schedule. It bridges two popular productivity tools to streamline student workflow.</p>
-            <p>This project demonstrates proficiency in external API integration, encryption, reliability engineering, and building tools that integrate seamlessly with existing workflows.</p>
-        </section>
-
-        <!-- Key Features -->
-        <section>
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Automated Sync</h3>
-                    <p>Fetches Canvas assignments every 30 minutes and automatically syncs them to Notion without manual intervention.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>AES-GCM Encryption</h3>
-                    <p>Implements AES-GCM encryption to protect sensitive data like API keys and credentials stored locally.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Rate Limiting</h3>
-                    <p>Engineered robust rate limiting (25 req/s burst, ~10 req/s sustained) to respect API limits and prevent throttling.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Retry & Backoff</h3>
-                    <p>Implements intelligent retry strategies: 429 Retry-After headers, 409 exponential backoff, limited 5xx retries.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Error Handling</h3>
-                    <p>Comprehensive error states with console logging and user-friendly UI error messages for debugging.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Conflict Resolution</h3>
-                    <p>Reduces sync conflicts with batching and sequential fallback strategies.</p>
-                </div>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>AES-GCM Encryption</span>
             </div>
-        </section>
-
-        <!-- Technical Highlights -->
-        <section>
-            <h2>Technical Highlights</h2>
-            <div class="highlight-box">
-                <h3>Reliability Engineering</h3>
-                <p>This project showcases production-grade reliability practices: rate limiting respects API constraints, retry/backoff strategies handle transient failures gracefully, and observability (logging + error states) enables debugging.</p>
+            <div class="p-4 text-sm text-brand-textGray leading-relaxed">
+                Implements AES-GCM encryption to protect sensitive data like API keys and credentials stored locally.
             </div>
-            <div class="highlight-box">
-                <h3>Security</h3>
-                <p>Implements AES-GCM encryption for sensitive data at rest, protecting API keys and user credentials from unauthorized access.</p>
+        </div>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Rate Limiting</span>
             </div>
-            <div class="highlight-box">
-                <h3>User Experience</h3>
-                <p>Focuses on transparent operation: UI error states inform users of issues, batching reduces conflicts, and sequential fallback ensures data integrity even when APIs are overloaded.</p>
+            <div class="p-4 text-sm text-brand-textGray leading-relaxed">
+                Engineered robust rate limiting (25 req/s burst, ~10 req/s sustained) to respect API limits and prevent throttling.
             </div>
-        </section>
-
-        <!-- What I Learned -->
-        <section>
-            <h2>What I Learned</h2>
-            <ul style="line-height: 2; margin-left: 1.5rem;">
-                <li><strong>API Reliability:</strong> Understanding rate limits, retry strategies, and backoff mechanisms for robust API integrations.</li>
-                <li><strong>Encryption:</strong> Implementing AES-GCM for protecting sensitive credentials and data.</li>
-                <li><strong>Chrome Extension APIs:</strong> Building extensions that interact with multiple web services seamlessly.</li>
-                <li><strong>Observability:</strong> The importance of logging and error states for user support and debugging.</li>
-                <li><strong>Conflict Resolution:</strong> Strategies for handling sync conflicts in distributed systems.</li>
-            </ul>
-        </section>
-
-        <!-- Links -->
-        <section>
-            <h2>Links</h2>
-            <div class="links">
-                <a href="https://github.com/KyleOrtzow1/CanvasNotionSync" target="_blank" class="btn">View on GitHub</a>
+        </div>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Retry &amp; Backoff</span>
             </div>
-        </section>
-    </main>
+            <div class="p-4 text-sm text-brand-textGray leading-relaxed">
+                Implements intelligent retry strategies: 429 Retry-After headers, 409 exponential backoff, limited 5xx retries.
+            </div>
+        </div>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Error Handling</span>
+            </div>
+            <div class="p-4 text-sm text-brand-textGray leading-relaxed">
+                Comprehensive error states with console logging and user-friendly UI error messages for debugging.
+            </div>
+        </div>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Conflict Resolution</span>
+            </div>
+            <div class="p-4 text-sm text-brand-textGray leading-relaxed">
+                Reduces sync conflicts with batching and sequential fallback strategies.
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="../index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
-    </footer>
+<!-- Technical Highlights -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>Technical_Analysis // Deep_Dive</span>
+        <span class="material-symbols-outlined text-sm">analytics</span>
+    </div>
+    <div class="p-6 space-y-6">
+        <div class="border-l-4 border-l-brand-accent pl-6">
+            <h4 class="font-bold uppercase text-sm font-mono mb-2">Reliability Engineering</h4>
+            <p class="text-sm text-brand-textGray leading-relaxed">This project showcases production-grade reliability practices: rate limiting respects API constraints, retry/backoff strategies handle transient failures gracefully, and observability (logging + error states) enables debugging.</p>
+        </div>
+        <div class="border-l-4 border-l-brand-accent pl-6">
+            <h4 class="font-bold uppercase text-sm font-mono mb-2">Security</h4>
+            <p class="text-sm text-brand-textGray leading-relaxed">Implements AES-GCM encryption for sensitive data at rest, protecting API keys and user credentials from unauthorized access.</p>
+        </div>
+        <div class="border-l-4 border-l-brand-accent pl-6">
+            <h4 class="font-bold uppercase text-sm font-mono mb-2">User Experience</h4>
+            <p class="text-sm text-brand-textGray leading-relaxed">Focuses on transparent operation: UI error states inform users of issues, batching reduces conflicts, and sequential fallback ensures data integrity even when APIs are overloaded.</p>
+        </div>
+    </div>
+</section>
+
+<!-- What I Learned -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>Knowledge_Log // Insights</span>
+        <span class="material-symbols-outlined text-sm">lightbulb</span>
+    </div>
+    <div class="p-6">
+        <ul class="space-y-3">
+            <li class="text-sm text-brand-textGray font-mono"><strong class="text-brand-textDark">API Reliability:</strong> Understanding rate limits, retry strategies, and backoff mechanisms for robust API integrations.</li>
+            <li class="text-sm text-brand-textGray font-mono"><strong class="text-brand-textDark">Encryption:</strong> Implementing AES-GCM for protecting sensitive credentials and data.</li>
+            <li class="text-sm text-brand-textGray font-mono"><strong class="text-brand-textDark">Chrome Extension APIs:</strong> Building extensions that interact with multiple web services seamlessly.</li>
+            <li class="text-sm text-brand-textGray font-mono"><strong class="text-brand-textDark">Observability:</strong> The importance of logging and error states for user support and debugging.</li>
+            <li class="text-sm text-brand-textGray font-mono"><strong class="text-brand-textDark">Conflict Resolution:</strong> Strategies for handling sync conflicts in distributed systems.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Links -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>External_Links // Resources</span>
+        <span class="material-symbols-outlined text-sm">link</span>
+    </div>
+    <div class="p-6 flex gap-4">
+        <a href="https://github.com/KyleOrtzow1/CanvasNotionSync" target="_blank" class="px-6 py-3 bg-brand-dark text-white text-xs uppercase font-bold hover:bg-brand-accent transition-colors font-mono flex items-center gap-2 no-underline">
+            <span class="material-symbols-outlined text-sm">code</span>
+            View on GitHub
+        </a>
+    </div>
+</section>
+
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="mt-12 border-t border-brand-border bg-white py-6">
+<div class="max-w-[1600px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-textGray uppercase font-bold font-mono">
+    <div>&copy; 2025 Kyle Ortzow. Built with thoughtful design and clean code.</div>
+    <div class="flex gap-4">
+        <span>Server Status: Online</span>
+        <span>Transmission: Secure</span>
+    </div>
+</div>
+</footer>
+
 </body>
 </html>

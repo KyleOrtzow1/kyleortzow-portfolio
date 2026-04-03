@@ -1,127 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaperScout | Kyle Ortzow</title>
-    <link rel="icon" type="image/x-icon" href="../src/assets/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="../src/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="../src/assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="../src/css/variables.css">
-    <link rel="stylesheet" href="../src/css/project-pages.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PaperScout | Kyle Ortzow</title>
+<link rel="icon" type="image/x-icon" href="../src/assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../src/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="../src/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="../src/assets/favicon/site.webmanifest">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        light: '#d2e4d2',
+                        DEFAULT: '#b4cbb4',
+                        dark: '#3f4c58',
+                        accent: '#96b896',
+                        accentDark: '#7ea47e',
+                        textDark: '#111827',
+                        textGray: '#4b5563',
+                        border: '#e5e7eb',
+                        bgLight: '#f9fafb'
+                    }
+                },
+                fontFamily: {
+                    sans: ['Manrope', 'sans-serif'],
+                    mono: ['"Roboto Mono"', 'monospace'],
+                }
+            }
+        }
+    }
+</script>
+<style type="text/tailwindcss">
+    @layer base {
+        body {
+            @apply font-sans bg-brand-bgLight text-brand-textDark antialiased;
+        }
+    }
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+    }
+    .monitor-panel {
+        @apply bg-white border border-brand-border rounded shadow-sm overflow-hidden flex flex-col;
+    }
+    .panel-header {
+        @apply border-b border-brand-border px-3 py-1.5 flex items-center justify-between bg-brand-light/20 text-[10px] uppercase tracking-tighter font-bold text-brand-dark font-mono;
+    }
+    .scanline {
+        background: linear-gradient(to bottom, transparent 50%, rgba(180, 203, 180, 0.05) 51%);
+        background-size: 100% 4px;
+        pointer-events: none;
+    }
+</style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <nav-content>
-            <a href="../index.html" class="logo">Kyle Ortzow</a>
-            <a href="../index.html" style="margin-left: auto;">Back to Portfolio</a>
-        </nav-content>
-    </nav>
+<body class="selection:bg-brand-accent selection:text-white">
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>PaperScout</h1>
-            <p class="hero-meta">AI Research Assistant | Feb 2026 - Present</p>
-            <div class="tech-stack">
-                <span class="tech-badge">Cloudflare Workers</span>
-                <span class="tech-badge">Durable Objects</span>
-                <span class="tech-badge">Workers AI</span>
-                <span class="tech-badge">React</span>
+<!-- Scanline Overlay -->
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
+
+<!-- Navigation -->
+<nav class="sticky top-0 z-40 border-b border-brand-border bg-white px-4 py-2 flex items-center justify-between text-xs font-mono">
+    <a href="../index.html" class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm text-brand-dark">terminal</span>
+        <span class="font-bold text-brand-dark uppercase">Kyle Ortzow // PORTFOLIO</span>
+    </a>
+    <a href="../index.html" class="font-bold text-brand-dark uppercase hover:bg-brand-light px-2 py-1">Back to Portfolio</a>
+</nav>
+
+<!-- Main Content -->
+<main class="p-4 max-w-[1600px] mx-auto">
+<div class="dashboard-grid">
+
+<!-- Hero Panel -->
+<section class="col-span-12 monitor-panel">
+    <div class="panel-header">
+        <span>PROJECT_MODULE // PAPERSCOUT</span>
+        <span class="material-symbols-outlined text-sm">auto_stories</span>
+    </div>
+    <div class="p-8 md:p-12">
+        <span class="text-[10px] text-brand-accent font-bold font-mono">&gt; AI RESEARCH ASSISTANT</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-brand-dark">PaperScout</h1>
+        <p class="text-sm text-brand-textGray font-mono mt-2">AI Research Assistant | Feb 2026 - Present</p>
+        <div class="flex flex-wrap gap-2 mt-4">
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Cloudflare Workers</span>
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Durable Objects</span>
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Workers AI</span>
+            <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">React</span>
+        </div>
+    </div>
+</section>
+
+<!-- Overview Panel -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>System_Overview // Description</span>
+        <span class="material-symbols-outlined text-sm">description</span>
+    </div>
+    <div class="p-6 text-sm text-brand-textGray leading-relaxed space-y-4">
+        <p>PaperScout is an AI-powered research assistant for discovering and organizing academic papers from arXiv. Built on Cloudflare Workers with Durable Objects and Workers AI, it provides each user with an isolated agent instance backed by full SQLite persistence.</p>
+        <p>Ask PaperScout to find papers on a topic, get AI-generated summaries using Llama 3.3 70B, save papers to your personal library with custom tags, and query your collection later.</p>
+    </div>
+</section>
+
+<!-- Key Features -->
+<section class="col-span-12 mt-4">
+    <div class="panel-header rounded border border-brand-border">
+        <span>Key Features / Capabilities</span>
+        <span class="material-symbols-outlined text-sm">star</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>arXiv Search</span>
+            </div>
+            <div class="p-4">
+                <p class="text-[11px] text-brand-textGray leading-relaxed">Query arXiv with date filters and result limits, returning relevant academic papers in real time.</p>
             </div>
         </div>
-    </section>
 
-    <main>
-        <a href="../index.html" class="back-link">← Back to Portfolio</a>
-
-        <!-- Overview -->
-        <section>
-            <h2>Overview</h2>
-            <p>PaperScout is an AI-powered research assistant for discovering and organizing academic papers from arXiv. Built on Cloudflare Workers with Durable Objects and Workers AI, it provides each user with an isolated agent instance backed by full SQLite persistence.</p>
-            <p>Ask PaperScout to find papers on a topic, get AI-generated summaries using Llama 3.3 70B, save papers to your personal library with custom tags, and query your collection later.</p>
-        </section>
-
-        <!-- Key Features -->
-        <section>
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>arXiv Search</h3>
-                    <p>Query arXiv with date filters and result limits, returning relevant academic papers in real time.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>AI Summaries</h3>
-                    <p>Structured summaries (TL;DR, Key Contributions, Limitations) generated by Llama 3.3 70B with abstract-only disclaimers.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Persistent Library</h3>
-                    <p>Save papers to a personal library with SQLite backing. Data survives page refreshes and browser sessions.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Custom Tagging</h3>
-                    <p>Organize saved papers with custom tags and query your library by topic later.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Streaming Responses</h3>
-                    <p>Real-time response streaming for a snappy UX, with up to 10 agentic reasoning steps.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>User Isolation</h3>
-                    <p>Each user gets their own Durable Object instance with no shared state and full SQLite persistence.</p>
-                </div>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>AI Summaries</span>
             </div>
-        </section>
+            <div class="p-4">
+                <p class="text-[11px] text-brand-textGray leading-relaxed">Structured summaries (TL;DR, Key Contributions, Limitations) generated by Llama 3.3 70B with abstract-only disclaimers.</p>
+            </div>
+        </div>
 
-        <!-- Technical Highlights -->
-        <section>
-            <h2>Technical Highlights</h2>
-            <div class="highlight-box">
-                <h3>Durable Objects + SQLite</h3>
-                <p>Each user gets an isolated Durable Object instance with embedded SQLite for persistent storage of papers, summaries, and tags. State syncs to the frontend for real-time UI updates.</p>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Persistent Library</span>
             </div>
-            <div class="highlight-box">
-                <h3>Tool-based Agent Architecture</h3>
-                <p>PaperScout exposes AI tools (searchArxiv, summarizePaper, savePaper, listSavedPapers, removeSavedPaper) using the ai-sdk tool() API, with confirmation prompts for destructive operations.</p>
+            <div class="p-4">
+                <p class="text-[11px] text-brand-textGray leading-relaxed">Save papers to a personal library with SQLite backing. Data survives page refreshes and browser sessions.</p>
             </div>
-            <div class="highlight-box">
-                <h3>Workers AI Integration</h3>
-                <p>Uses Llama 3.3 70B Instruct via Cloudflare Workers AI with streamText() for real-time streaming. No external API keys needed — runs entirely on Cloudflare's infrastructure.</p>
-            </div>
-            <div class="highlight-box">
-                <h3>Graceful Fallbacks</h3>
-                <p>Storage utilities automatically fall back from localStorage to sessionStorage to memory. React error boundaries catch rendering errors with recovery options.</p>
-            </div>
-        </section>
+        </div>
 
-        <!-- What I Learned -->
-        <section>
-            <h2>What I Learned</h2>
-            <ul style="line-height: 2; margin-left: 1.5rem;">
-                <li><strong>Durable Objects:</strong> Building stateful, user-isolated backends on Cloudflare's edge infrastructure with embedded SQLite.</li>
-                <li><strong>Agent SDK Design:</strong> Implementing tool-based AI agents with auto-execute and confirmation patterns using the Cloudflare Agents SDK.</li>
-                <li><strong>Streaming LLM Responses:</strong> Real-time streaming with streamText() for responsive multi-turn chat experiences.</li>
-                <li><strong>arXiv API Integration:</strong> Parsing Atom feeds, normalizing paper IDs across formats, and respecting rate limits.</li>
-                <li><strong>Edge-native Architecture:</strong> Designing apps that run entirely on Cloudflare Workers with zero external dependencies.</li>
-            </ul>
-        </section>
-
-        <!-- Links -->
-        <section>
-            <h2>Links</h2>
-            <div class="links">
-                <a href="https://github.com/KyleOrtzow1/cf_ai_paperscout" target="_blank" class="btn">View on GitHub</a>
-                <a href="https://cf_ai_paperscout.kyleortzow.workers.dev/" target="_blank" class="btn">Live Demo</a>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Custom Tagging</span>
             </div>
-        </section>
-    </main>
+            <div class="p-4">
+                <p class="text-[11px] text-brand-textGray leading-relaxed">Organize saved papers with custom tags and query your library by topic later.</p>
+            </div>
+        </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="../index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
-    </footer>
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>Streaming Responses</span>
+            </div>
+            <div class="p-4">
+                <p class="text-[11px] text-brand-textGray leading-relaxed">Real-time response streaming for a snappy UX, with up to 10 agentic reasoning steps.</p>
+            </div>
+        </div>
+
+        <div class="monitor-panel">
+            <div class="panel-header">
+                <span>User Isolation</span>
+            </div>
+            <div class="p-4">
+                <p class="text-[11px] text-brand-textGray leading-relaxed">Each user gets their own Durable Object instance with no shared state and full SQLite persistence.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Technical Highlights -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>Technical_Analysis // Deep_Dive</span>
+        <span class="material-symbols-outlined text-sm">analytics</span>
+    </div>
+    <div class="p-6 space-y-6">
+
+        <div class="border-l-4 border-l-brand-accent pl-6">
+            <h4 class="text-sm font-bold text-brand-dark mb-1">Durable Objects + SQLite</h4>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">Each user gets an isolated Durable Object instance with embedded SQLite for persistent storage of papers, summaries, and tags. State syncs to the frontend for real-time UI updates.</p>
+        </div>
+
+        <div class="border-l-4 border-l-brand-accent pl-6">
+            <h4 class="text-sm font-bold text-brand-dark mb-1">Tool-based Agent Architecture</h4>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">PaperScout exposes AI tools (searchArxiv, summarizePaper, savePaper, listSavedPapers, removeSavedPaper) using the ai-sdk tool() API, with confirmation prompts for destructive operations.</p>
+        </div>
+
+        <div class="border-l-4 border-l-brand-accent pl-6">
+            <h4 class="text-sm font-bold text-brand-dark mb-1">Workers AI Integration</h4>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">Uses Llama 3.3 70B Instruct via Cloudflare Workers AI with streamText() for real-time streaming. No external API keys needed — runs entirely on Cloudflare's infrastructure.</p>
+        </div>
+
+        <div class="border-l-4 border-l-brand-accent pl-6">
+            <h4 class="text-sm font-bold text-brand-dark mb-1">Graceful Fallbacks</h4>
+            <p class="text-[11px] text-brand-textGray leading-relaxed">Storage utilities automatically fall back from localStorage to sessionStorage to memory. React error boundaries catch rendering errors with recovery options.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- What I Learned -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>Knowledge_Log // Insights</span>
+        <span class="material-symbols-outlined text-sm">lightbulb</span>
+    </div>
+    <div class="p-6">
+        <ul class="space-y-3 text-sm text-brand-textGray font-mono">
+            <li><strong class="text-brand-dark">Durable Objects:</strong> Building stateful, user-isolated backends on Cloudflare's edge infrastructure with embedded SQLite.</li>
+            <li><strong class="text-brand-dark">Agent SDK Design:</strong> Implementing tool-based AI agents with auto-execute and confirmation patterns using the Cloudflare Agents SDK.</li>
+            <li><strong class="text-brand-dark">Streaming LLM Responses:</strong> Real-time streaming with streamText() for responsive multi-turn chat experiences.</li>
+            <li><strong class="text-brand-dark">arXiv API Integration:</strong> Parsing Atom feeds, normalizing paper IDs across formats, and respecting rate limits.</li>
+            <li><strong class="text-brand-dark">Edge-native Architecture:</strong> Designing apps that run entirely on Cloudflare Workers with zero external dependencies.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Links -->
+<section class="col-span-12 mt-4 monitor-panel">
+    <div class="panel-header">
+        <span>External_Links // Resources</span>
+        <span class="material-symbols-outlined text-sm">link</span>
+    </div>
+    <div class="p-6 flex gap-4">
+        <a href="https://github.com/KyleOrtzow1/cf_ai_paperscout" target="_blank" class="px-6 py-3 bg-brand-dark text-white text-xs uppercase font-bold hover:bg-brand-accent transition-colors font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">code</span> View on GitHub
+        </a>
+        <a href="https://cf_ai_paperscout.kyleortzow.workers.dev/" target="_blank" class="px-6 py-3 border border-brand-dark text-brand-dark text-xs uppercase font-bold hover:bg-brand-light transition-colors font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">launch</span> Live Demo
+        </a>
+    </div>
+</section>
+
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="mt-12 border-t border-brand-border bg-white py-6">
+<div class="max-w-[1600px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-textGray uppercase font-bold font-mono">
+    <div>&copy; 2024 Kyle Ortzow. Built with thoughtful design and clean code.</div>
+    <div class="flex gap-4">
+        <span>Server Status: Online</span>
+        <span>Transmission: Secure</span>
+    </div>
+</div>
+</footer>
+
 </body>
 </html>
