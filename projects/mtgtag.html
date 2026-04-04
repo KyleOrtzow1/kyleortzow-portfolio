@@ -9,118 +9,233 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" href="../src/assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="../src/assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="../src/css/variables.css">
-    <link rel="stylesheet" href="../src/css/project-pages.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#d2e4d2',
+                            DEFAULT: '#b4cbb4',
+                            dark: '#3f4c58',
+                            accent: '#96b896',
+                            accentDark: '#7ea47e',
+                            textDark: '#111827',
+                            textGray: '#4b5563',
+                            border: '#e5e7eb',
+                            bgLight: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        mono: ['"Roboto Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply font-sans bg-brand-bgLight text-brand-textDark antialiased;
+            }
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+        }
+        .monitor-panel {
+            @apply bg-white border border-brand-border rounded shadow-sm overflow-hidden flex flex-col;
+        }
+        .panel-header {
+            @apply border-b border-brand-border px-3 py-1.5 flex items-center justify-between bg-brand-light/20 text-[10px] uppercase tracking-tighter font-bold text-brand-dark font-mono;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(180, 203, 180, 0.05) 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <nav-content>
-            <a href="../index.html" class="logo">Kyle Ortzow</a>
-            <a href="../index.html" style="margin-left: auto;">Back to Portfolio</a>
-        </nav-content>
-    </nav>
+<body class="selection:bg-brand-accent selection:text-white">
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>MTGTag</h1>
-            <p class="hero-meta">Magic: The Gathering Card Functional Tagging System | August 2025 - Present</p>
-            <div class="tech-stack">
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">PyTorch</span>
-                <span class="tech-badge">Transformers</span>
-                <span class="tech-badge">NLP</span>
+<!-- Scanline Overlay -->
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
+
+<!-- Navigation -->
+<nav class="border-b border-brand-border bg-white sticky top-0 z-40 px-4 py-2 flex items-center justify-between text-xs font-mono">
+    <a href="../index.html" class="flex items-center gap-2 font-bold text-brand-dark uppercase">
+        <span class="material-symbols-outlined text-sm">terminal</span>
+        Kyle Ortzow // PORTFOLIO
+    </a>
+    <a href="../index.html" class="font-bold text-brand-dark uppercase hover:bg-brand-light px-2 py-1">Back to Portfolio</a>
+</nav>
+
+<main class="p-4 max-w-[1600px] mx-auto">
+<div class="dashboard-grid">
+
+    <!-- Hero Panel -->
+    <section class="col-span-12 monitor-panel">
+        <div class="panel-header">
+            <span>PROJECT_MODULE // MTGTAG</span>
+            <span class="material-symbols-outlined text-sm">model_training</span>
+        </div>
+        <div class="p-8 md:p-12">
+            <p class="text-[10px] text-brand-accent font-bold font-mono">&gt; ML PIPELINE</p>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-brand-dark">MTGTag</h1>
+            <p class="text-sm text-brand-textGray font-mono mt-2">Magic: The Gathering Card Functional Tagging System | August 2025 - Present</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Python</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">PyTorch</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Transformers</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">NLP</span>
             </div>
         </div>
     </section>
 
-    <main>
-        <a href="../index.html" class="back-link">← Back to Portfolio</a>
-
-        <!-- Overview -->
-        <section>
-            <h2>Overview</h2>
+    <!-- Overview Panel -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>System_Overview // Description</span>
+            <span class="material-symbols-outlined text-sm">description</span>
+        </div>
+        <div class="p-6 text-sm text-brand-textGray leading-relaxed space-y-4">
             <p>MTGTag is a machine learning pipeline that automatically classifies Magic: The Gathering cards into 81 functional labels. Using fine-tuned DistilBERT, the system achieves 0.91 F1 score on validation data with significant improvements from domain-specific adaptation.</p>
             <p>This project demonstrates end-to-end machine learning: data preparation, model fine-tuning, GPU training, evaluation, and iteration.</p>
-        </section>
+        </div>
+    </section>
 
-<!-- Key Features -->
-        <section>
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Fine-Tuned DistilBERT</h3>
-                    <p>Leverages pre-trained DistilBERT for efficient transformer-based classification on Magic card text.</p>
+    <!-- Key Features -->
+    <section class="col-span-12 mt-4">
+        <div class="panel-header rounded border border-brand-border">
+            <span>Key Features / Capabilities</span>
+            <span class="material-symbols-outlined text-sm">star</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Fine-Tuned DistilBERT</span>
                 </div>
-                <div class="feature-card">
-                    <h3>Domain Adaptation</h3>
-                    <p>Large performance gains from domain-specific adaptation on Magic card text and mechanics.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Multi-Label Classification</h3>
-                    <p>Handles 81 functional labels per card, capturing complex card mechanics and abilities.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>GPU Training</h3>
-                    <p>Trained end-to-end on GPU in ~2 hours, demonstrating efficient deep learning workflows.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Rigorous Evaluation</h3>
-                    <p>Evaluated on holdout split (~10%) with threshold and metric iteration for optimal performance.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Production Ready</h3>
-                    <p>Saved model and inference pipeline for easy deployment and reuse.</p>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Leverages pre-trained DistilBERT for efficient transformer-based classification on Magic card text.</p>
                 </div>
             </div>
-        </section>
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Domain Adaptation</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Large performance gains from domain-specific adaptation on Magic card text and mechanics.</p>
+                </div>
+            </div>
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Multi-Label Classification</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Handles 81 functional labels per card, capturing complex card mechanics and abilities.</p>
+                </div>
+            </div>
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>GPU Training</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Trained end-to-end on GPU in ~2 hours, demonstrating efficient deep learning workflows.</p>
+                </div>
+            </div>
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Rigorous Evaluation</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Evaluated on holdout split (~10%) with threshold and metric iteration for optimal performance.</p>
+                </div>
+            </div>
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Production Ready</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Saved model and inference pipeline for easy deployment and reuse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Technical Highlights -->
-        <section>
-            <h2>Technical Highlights</h2>
-            <div class="highlight-box">
-                <h3>Domain Adaptation</h3>
-                <p>Standard NLP models struggle with Magic card text due to unique terminology and mechanics. The model was adapted using domain-specific training data, leading to large F1 improvements (0.91 final score).</p>
+    <!-- Technical Highlights -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>Technical_Analysis // Deep_Dive</span>
+            <span class="material-symbols-outlined text-sm">analytics</span>
+        </div>
+        <div class="p-6 space-y-6">
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Domain Adaptation</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed">Standard NLP models struggle with Magic card text due to unique terminology and mechanics. The model was adapted using domain-specific training data, leading to large F1 improvements (0.91 final score).</p>
             </div>
-            <div class="highlight-box">
-                <h3>Multi-Label Classification</h3>
-                <p>Unlike binary or single-label tasks, this system predicts multiple labels per card. This required custom loss functions and threshold tuning to maximize F1 scores.</p>
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Multi-Label Classification</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed">Unlike binary or single-label tasks, this system predicts multiple labels per card. This required custom loss functions and threshold tuning to maximize F1 scores.</p>
             </div>
-            <div class="highlight-box">
-                <h3>Efficient Training</h3>
-                <p>DistilBERT is ~40% faster than BERT with minimal quality loss. Combined with GPU acceleration, training 33k+ cards takes just 2 hours.</p>
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Efficient Training</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed">DistilBERT is ~40% faster than BERT with minimal quality loss. Combined with GPU acceleration, training 33k+ cards takes just 2 hours.</p>
             </div>
-            <div class="highlight-box">
-                <h3>Rigorous Evaluation</h3>
-                <p>Used holdout validation split and iterated on thresholds/metrics. F1 score as primary metric ensures both precision and recall are optimized.</p>
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Rigorous Evaluation</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed">Used holdout validation split and iterated on thresholds/metrics. F1 score as primary metric ensures both precision and recall are optimized.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- What I Learned -->
-        <section>
-            <h2>What I Learned</h2>
-            <ul style="line-height: 2; margin-left: 1.5rem;">
-                <li><strong>Transfer Learning:</strong> Fine-tuning pre-trained models for domain-specific tasks is far more efficient than training from scratch.</li>
-                <li><strong>Multi-Label Classification:</strong> Handling multiple labels per sample requires different loss functions and evaluation metrics.</li>
-                <li><strong>Domain Adaptation:</strong> NLP models need domain-specific data to perform well on specialized text (like Magic card mechanics).</li>
-                <li><strong>GPU Training:</strong> Leveraging GPUs dramatically speeds up training; ~2 hours for 33k+ samples is feasible.</li>
-                <li><strong>Evaluation & Iteration:</strong> Rigorous evaluation with holdout splits and metric tuning leads to robust models.</li>
+    <!-- What I Learned -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>Knowledge_Log // Insights</span>
+            <span class="material-symbols-outlined text-sm">lightbulb</span>
+        </div>
+        <div class="p-6">
+            <ul class="space-y-3 text-sm text-brand-textGray font-mono">
+                <li><strong class="text-brand-dark">Transfer Learning:</strong> Fine-tuning pre-trained models for domain-specific tasks is far more efficient than training from scratch.</li>
+                <li><strong class="text-brand-dark">Multi-Label Classification:</strong> Handling multiple labels per sample requires different loss functions and evaluation metrics.</li>
+                <li><strong class="text-brand-dark">Domain Adaptation:</strong> NLP models need domain-specific data to perform well on specialized text (like Magic card mechanics).</li>
+                <li><strong class="text-brand-dark">GPU Training:</strong> Leveraging GPUs dramatically speeds up training; ~2 hours for 33k+ samples is feasible.</li>
+                <li><strong class="text-brand-dark">Evaluation &amp; Iteration:</strong> Rigorous evaluation with holdout splits and metric tuning leads to robust models.</li>
             </ul>
-        </section>
+        </div>
+    </section>
 
-        <!-- Links -->
-        <section>
-            <h2>Links</h2>
-            <div class="links">
-                <a href="https://github.com/KyleOrtzow1/MTGTag" target="_blank" class="btn">View on GitHub</a>
-            </div>
-        </section>
-    </main>
+    <!-- Links -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>External_Links // Resources</span>
+            <span class="material-symbols-outlined text-sm">link</span>
+        </div>
+        <div class="p-6 flex gap-4">
+            <a href="https://github.com/KyleOrtzow1/MTGTag" target="_blank" class="px-6 py-3 bg-brand-dark text-white text-xs uppercase font-bold hover:bg-brand-accent transition-colors font-mono flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">code</span>
+                View on GitHub
+            </a>
+        </div>
+    </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Kyle Ortzow. Explore more projects at <a href="../index.html" style="color: var(--dusty-olive); text-decoration: none;">kyleortzow.com</a></p>
-    </footer>
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="mt-12 border-t border-brand-border bg-white py-6">
+    <div class="max-w-[1600px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-textGray uppercase font-bold font-mono">
+        <div>&copy; 2024 Kyle Ortzow. Built with thoughtful design and clean code.</div>
+        <div class="flex gap-4">
+            <span>Server Status: Online</span>
+            <span>Transmission: Secure</span>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>

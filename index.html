@@ -1,221 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyle Ortzow - Computer Science Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="/src/assets/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/favicon/favicon-16x16.png">
-    <link rel="apple-touch-icon" href="/src/assets/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/src/assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="/src/css/variables.css">
-    <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/css/components.css">
-    <link rel="stylesheet" href="/src/css/responsive.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kyle Ortzow - Computer Science Portfolio</title>
+<link rel="icon" type="image/x-icon" href="/src/assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/src/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/src/assets/favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/src/assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="/src/assets/favicon/site.webmanifest">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Roboto+Mono:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    brand: {
+                        light: '#d2e4d2',
+                        DEFAULT: '#b4cbb4',
+                        dark: '#3f4c58',
+                        accent: '#96b896',
+                        accentDark: '#7ea47e',
+                        textDark: '#111827',
+                        textGray: '#4b5563',
+                        border: '#e5e7eb',
+                        bgLight: '#f9fafb'
+                    }
+                },
+                fontFamily: {
+                    sans: ['Manrope', 'sans-serif'],
+                    mono: ['"Roboto Mono"', 'monospace'],
+                }
+            }
+        }
+    }
+</script>
+<style type="text/tailwindcss">
+    @layer base {
+        body {
+            @apply font-sans bg-brand-bgLight text-brand-textDark antialiased;
+        }
+    }
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+    }
+    .monitor-panel {
+        @apply bg-white border border-brand-border rounded shadow-sm overflow-hidden flex flex-col;
+    }
+    .panel-header {
+        @apply border-b border-brand-border px-3 py-1.5 flex items-center justify-between bg-brand-light/20 text-[10px] uppercase tracking-tighter font-bold text-brand-dark font-mono;
+    }
+    .status-dot {
+        @apply w-2 h-2 rounded-full bg-brand-accent animate-pulse;
+    }
+    .scanline {
+        background: linear-gradient(to bottom, transparent 50%, rgba(180, 203, 180, 0.05) 51%);
+        background-size: 100% 4px;
+        pointer-events: none;
+    }
+    .timeline-line {
+        position: absolute;
+        left: 24px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        @apply bg-brand-border;
+    }
+    @media (min-width: 768px) {
+        .timeline-line {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+</style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav>
-        <nav-content>
-            <div class="logo">Kyle Ortzow</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav-content>
-    </nav>
+<body class="selection:bg-brand-accent selection:text-white">
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
 
-    <!-- Hero Section -->
-    <div class="hero-wrapper">
-        <section class="hero" id="home">
-            <div class="hero-text">
-                <h1>Kyle Ortzow</h1>
-                <p>CS student (SFSU, Dec 2026) building reliable API-driven systems and ML/LLM-powered software. Daily Linux + Docker user.</p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                </div>
-            </div>
-            <div class="hero-cards">
-                <div class="stat-card">
-                    <h3>4</h3>
-                    <p>Active Projects</p>
-                </div>
-                <div class="stat-card">
-                    <h3>3</h3>
-                    <p>Professional Roles</p>
-                </div>
-                <div class="stat-card">
-                    <h3>7</h3>
-                    <p>Languages</p>
-                </div>
-                <div class="stat-card">
-                    <h3>SF</h3>
-                    <p>Based</p>
-                </div>
-            </div>
-        </section>
+<!-- Navigation -->
+<nav class="border-b border-brand-border bg-white sticky top-0 z-40 px-4 py-2 flex items-center justify-between text-xs font-mono">
+<div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 font-bold text-brand-dark uppercase">
+        <span class="material-symbols-outlined text-sm">terminal</span>
+        Kyle Ortzow // PORTFOLIO
     </div>
+    <div class="hidden md:flex items-center gap-3 text-brand-textGray">
+        <span class="flex items-center gap-1"><span class="status-dot"></span> AVAILABILITY: ACTIVE</span>
+        <span class="opacity-30">|</span>
+        <span>LOCATION: SAN FRANCISCO, CA</span>
+    </div>
+</div>
+<div class="flex gap-6 uppercase font-bold text-brand-dark">
+    <a class="hover:bg-brand-light px-2 py-1" href="#home">Home</a>
+    <a class="hover:bg-brand-light px-2 py-1" href="#skills">Skills</a>
+    <a class="hover:bg-brand-light px-2 py-1" href="#projects">Projects</a>
+    <a class="hover:bg-brand-light px-2 py-1" href="#contact">Contact</a>
+</div>
+</nav>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2>Core Competencies</h2>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <h3>Languages</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>JavaScript</li>
-                        <li>Java</li>
-                        <li>SQL</li>
-                        <li>C++</li>
-                        <li>Rust</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>Systems & Software</h3>
-                    <ul>
-                        <li>Linux</li>
-                        <li>Git</li>
-                        <li>Docker</li>
-                        <li>REST APIs</li>
-                        <li>Chrome Extensions</li>
-                        <li>Encryption</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>ML & AI</h3>
-                    <ul>
-                        <li>PyTorch</li>
-                        <li>Transformers</li>
-                        <li>NLP</li>
-                        <li>LLM Systems</li>
-                        <li>scikit-learn</li>
-                        <li>DistilBERT</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>Tools & Practices</h3>
-                    <ul>
-                        <li>API Design</li>
-                        <li>Rate Limiting</li>
-                        <li>Debugging</li>
-                        <li>Testing (pytest)</li>
-                        <li>OpenAI API</li>
-                        <li>PydanticAI</li>
-                    </ul>
-                </div>
+<main class="p-4 max-w-[1600px] mx-auto">
+<div class="dashboard-grid">
+
+<!-- Hero Header -->
+<header class="col-span-12 monitor-panel min-h-[400px] relative" id="home">
+<div class="panel-header">
+    <span>IDENTITY_MODULE // STATUS_ONLINE</span>
+    <span class="material-symbols-outlined text-sm">person</span>
+</div>
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+    <canvas class="w-full h-full opacity-60" id="hero-canvas"></canvas>
+</div>
+<div class="p-8 md:p-12 flex flex-col justify-center h-full relative z-10">
+    <div class="text-[10px] text-brand-accent font-bold mb-2 font-mono">&gt; SOFTWARE ENGINEER</div>
+    <h1 class="text-5xl md:text-7xl font-extrabold text-brand-dark mb-4 tracking-tighter">Kyle Ortzow</h1>
+    <p class="text-sm md:text-lg text-brand-textGray max-w-3xl leading-relaxed border-l-2 border-brand-light pl-6 italic bg-white/40 backdrop-blur-[2px]">
+        CS student (SFSU, Dec 2026) building reliable API-driven systems and ML/LLM-powered software. Daily Linux + Docker user.
+    </p>
+    <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-px bg-brand-border border border-brand-border max-w-4xl relative z-10 font-mono">
+        <div class="bg-white p-4">
+            <div class="text-[9px] text-brand-textGray uppercase mb-1">PROJECTS</div>
+            <div class="text-2xl font-bold text-brand-dark">4</div>
+            <div class="text-[8px] text-brand-accent uppercase">Active Projects</div>
+        </div>
+        <div class="bg-white p-4">
+            <div class="text-[9px] text-brand-textGray uppercase mb-1">EXPERIENCE</div>
+            <div class="text-2xl font-bold text-brand-dark">3</div>
+            <div class="text-[8px] text-brand-accent uppercase">Professional Roles</div>
+        </div>
+        <div class="bg-white p-4">
+            <div class="text-[9px] text-brand-textGray uppercase mb-1">LANGUAGES</div>
+            <div class="text-2xl font-bold text-brand-dark">7</div>
+            <div class="text-[8px] text-brand-accent uppercase">Languages</div>
+        </div>
+        <div class="bg-white p-4">
+            <div class="text-[9px] text-brand-textGray uppercase mb-1">RESIDENCE</div>
+            <div class="text-2xl font-bold text-brand-dark">SF</div>
+            <div class="text-[8px] text-brand-accent uppercase">Based</div>
+        </div>
+    </div>
+    <div class="mt-10 flex gap-4 relative z-10 font-mono">
+        <a class="px-6 py-3 bg-brand-dark text-white text-xs uppercase font-bold hover:bg-brand-accent transition-colors flex items-center gap-2" href="#projects">
+            <span class="material-symbols-outlined text-sm">visibility</span> View My Work
+        </a>
+        <a class="px-6 py-3 border border-brand-dark text-brand-dark text-xs uppercase font-bold hover:bg-brand-light transition-colors flex items-center gap-2" href="#contact">
+            <span class="material-symbols-outlined text-sm">mail</span> Get In Touch
+        </a>
+    </div>
+</div>
+<div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-end pr-20 overflow-hidden">
+    <span class="material-symbols-outlined text-[500px]">hub</span>
+</div>
+</header>
+
+<!-- Technical Expertise -->
+<section class="col-span-12 mt-4" id="skills">
+<div class="monitor-panel">
+    <div class="panel-header">
+        <span>Core Competencies / Technical Expertise</span>
+        <span class="material-symbols-outlined text-sm">architecture</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-brand-border">
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-brand-dark">code</span>
+                <h3 class="font-bold text-xs uppercase font-mono">Languages</h3>
             </div>
-        </section>
+            <div class="space-y-1.5 text-[11px] text-brand-textGray font-mono">
+                <div class="flex justify-between"><span>Python</span><span class="text-brand-accent">98%</span></div>
+                <div class="w-full bg-brand-light/30 h-1 mb-2"><div class="bg-brand-accent h-full w-[98%]"></div></div>
+                <div class="flex justify-between"><span>JavaScript</span><span class="text-brand-accent">90%</span></div>
+                <div class="w-full bg-brand-light/30 h-1 mb-2"><div class="bg-brand-accent h-full w-[90%]"></div></div>
+                <div class="flex justify-between"><span>Java / C++</span><span class="text-brand-accent">85%</span></div>
+                <div class="w-full bg-brand-light/30 h-1 mb-2"><div class="bg-brand-accent h-full w-[85%]"></div></div>
+                <div class="mt-4 opacity-70">SQL, Rust</div>
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-brand-dark">dns</span>
+                <h3 class="font-bold text-xs uppercase font-mono">Systems &amp; Software</h3>
+            </div>
+            <ul class="space-y-1 text-[11px] text-brand-textGray font-mono">
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Linux</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Git</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Docker</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> REST APIs</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Chrome Extensions</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Encryption</li>
+            </ul>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-brand-dark">psychology</span>
+                <h3 class="font-bold text-xs uppercase font-mono">ML &amp; AI</h3>
+            </div>
+            <ul class="space-y-1 text-[11px] text-brand-textGray font-mono">
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> PyTorch</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Transformers</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> NLP</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> LLM Systems</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> scikit-learn</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> DistilBERT</li>
+            </ul>
+        </div>
+        <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="material-symbols-outlined text-brand-dark">build</span>
+                <h3 class="font-bold text-xs uppercase font-mono">Tools &amp; Practices</h3>
+            </div>
+            <ul class="space-y-1 text-[11px] text-brand-textGray font-mono">
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> API Design</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Rate Limiting</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Debugging</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> Testing (pytest)</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> OpenAI API</li>
+                <li class="flex items-center gap-2"><span class="w-1 h-1 bg-brand-dark"></span> PydanticAI</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            <div class="projects-container">
-                <a href="projects/canvas-notion-sync.html" style="text-decoration: none; color: inherit;">
-                    <div class="project-card">
-                        <div class="project-image"></div>
-                        <div class="project-content">
-                            <h3>Canvas–Notion Sync</h3>
-                            <p class="project-meta">Chrome Extension • Sep 2025 - Present</p>
-                            <p class="project-description">Chrome extension that syncs Canvas assignments into Notion on a 30-minute schedule. Implemented AES-GCM encryption, rate limiting (25 req/s burst), and retry/backoff strategies. Added observability with error logging and UI error states.</p>
-                            <div class="project-tags">
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">APIs</span>
-                                <span class="tag">Encryption</span>
-                                <span class="tag">Chrome Extension</span>
+<!-- Projects Section -->
+<section class="col-span-12 space-y-4" id="projects">
+<div class="panel-header rounded border border-brand-border py-2.5 px-4">
+    <span class="font-bold tracking-tight text-lg md:text-xl">Featured Projects / Portfolio</span>
+    <span class="material-symbols-outlined text-xl">folder_open</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+
+    <!-- Project 1: Canvas-Notion Sync -->
+    <a href="projects/canvas-notion-sync.html" class="block">
+    <article class="monitor-panel h-full hover:-translate-y-1 transition-transform duration-300">
+        <div class="panel-header bg-brand-dark text-white py-2.5 px-4"><span class="text-sm font-bold tracking-tight">Canvas-Notion Sync</span></div>
+        <div class="h-32 bg-brand-light/10 relative overflow-hidden flex items-center justify-center border-b border-brand-border">
+            <span class="material-symbols-outlined text-4xl text-brand-dark opacity-40">sync_alt</span>
+        </div>
+        <div class="p-4 flex flex-col flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">Canvas-Notion Sync</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">Chrome Extension · Sep 2025 – Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed mb-4 flex-grow">
+                Chrome extension that syncs Canvas assignments into Notion on a 30-minute schedule. Implemented AES-GCM encryption, rate limiting (25 req/s burst), and retry/backoff strategies.
+            </p>
+            <div class="flex flex-wrap gap-1 mb-4 font-mono">
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">JavaScript</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">APIs</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Encryption</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Chrome Extension</span>
+            </div>
+            <div class="flex gap-4 mt-auto border-t border-brand-border pt-3 font-mono">
+                <span class="text-[10px] font-bold text-brand-dark flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span> View Details
+                </span>
+            </div>
+        </div>
+    </article>
+    </a>
+
+    <!-- Project 2: MTG Card Search Agent -->
+    <a href="projects/mtg-search-agent.html" class="block">
+    <article class="monitor-panel h-full hover:-translate-y-1 transition-transform duration-300">
+        <div class="panel-header bg-brand-dark text-white py-2.5 px-4"><span class="text-sm font-bold tracking-tight">MTG Card Search Agent</span></div>
+        <div class="h-32 bg-brand-light/10 relative overflow-hidden flex items-center justify-center border-b border-brand-border">
+            <span class="material-symbols-outlined text-4xl text-brand-dark opacity-40">psychology</span>
+        </div>
+        <div class="p-4 flex flex-col flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">MTG Card Search Agent</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">NLP / LLM · Jul 2025 – Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed mb-4 flex-grow">
+                Multi-agent natural-language search system over 33k+ Magic cards. Generates Scryfall queries from English with iterative refinement (up to 5 loops) and evaluator feedback.
+            </p>
+            <div class="flex flex-wrap gap-1 mb-4 font-mono">
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Python</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">OpenAI API</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">PydanticAI</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">pytest</span>
+            </div>
+            <div class="flex gap-4 mt-auto border-t border-brand-border pt-3 font-mono">
+                <span class="text-[10px] font-bold text-brand-dark flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span> View Details
+                </span>
+            </div>
+        </div>
+    </article>
+    </a>
+
+    <!-- Project 3: PaperScout -->
+    <a href="projects/paperscout.html" class="block">
+    <article class="monitor-panel h-full hover:-translate-y-1 transition-transform duration-300">
+        <div class="panel-header bg-brand-dark text-white py-2.5 px-4"><span class="text-sm font-bold tracking-tight">PaperScout AI Assistant</span></div>
+        <div class="h-32 bg-brand-light/10 relative overflow-hidden flex items-center justify-center border-b border-brand-border">
+            <span class="material-symbols-outlined text-4xl text-brand-dark opacity-40">auto_stories</span>
+        </div>
+        <div class="p-4 flex flex-col flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">PaperScout</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">AI Research Assistant · Feb 2026 – Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed mb-4 flex-grow">
+                AI-powered research assistant for discovering and organizing arXiv papers. Built on Cloudflare Workers with Durable Objects for per-user SQLite persistence and Llama 3.3 70B for streaming summaries.
+            </p>
+            <div class="flex flex-wrap gap-1 mb-4 font-mono">
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Cloudflare Workers</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Durable Objects</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Workers AI</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">React</span>
+            </div>
+            <div class="flex gap-4 mt-auto border-t border-brand-border pt-3 font-mono">
+                <span class="text-[10px] font-bold text-brand-dark flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span> View Details
+                </span>
+            </div>
+        </div>
+    </article>
+    </a>
+
+    <!-- Project 4: MTGTag -->
+    <a href="projects/mtgtag.html" class="block">
+    <article class="monitor-panel h-full hover:-translate-y-1 transition-transform duration-300">
+        <div class="panel-header bg-brand-dark text-white py-2.5 px-4"><span class="text-sm font-bold tracking-tight">MTGTag ML Pipeline</span></div>
+        <div class="h-32 bg-brand-light/10 relative overflow-hidden flex items-center justify-center border-b border-brand-border">
+            <span class="material-symbols-outlined text-4xl text-brand-dark opacity-40">model_training</span>
+        </div>
+        <div class="p-4 flex flex-col flex-grow">
+            <h4 class="text-sm font-bold uppercase mb-1">MTGTag</h4>
+            <p class="text-[10px] text-brand-textGray uppercase mb-2 font-mono">ML Pipeline · Aug 2025 – Present</p>
+            <p class="text-[11px] text-brand-textGray leading-relaxed mb-4 flex-grow">
+                Classifies 33k+ Magic cards into 81 functional labels using fine-tuned DistilBERT with 0.91 F1 score. Demonstrates end-to-end ML: data prep, fine-tuning, GPU training, and evaluation.
+            </p>
+            <div class="flex flex-wrap gap-1 mb-4 font-mono">
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Python</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">PyTorch</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">Transformers</span>
+                <span class="px-1.5 py-0.5 bg-brand-light text-[9px] font-bold">NLP</span>
+            </div>
+            <div class="flex gap-4 mt-auto border-t border-brand-border pt-3 font-mono">
+                <span class="text-[10px] font-bold text-brand-dark flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span> View Details
+                </span>
+            </div>
+        </div>
+    </article>
+    </a>
+
+</div>
+<div class="flex justify-center pt-2 font-mono">
+    <a class="text-xs uppercase font-bold text-brand-dark border border-brand-border px-4 py-2 hover:bg-brand-light flex items-center gap-2" href="projects/">
+        <span class="material-symbols-outlined text-sm">grid_view</span> View All Projects
+    </a>
+</div>
+</section>
+
+<!-- Timeline / Experience Section -->
+<section class="col-span-12 mt-4" id="experience">
+<div class="monitor-panel">
+    <div class="panel-header">
+        <span>Career_Trajectory // Experience</span>
+        <span class="material-symbols-outlined text-sm">history</span>
+    </div>
+    <div class="relative p-6 md:p-12 overflow-hidden">
+        <div class="timeline-line"></div>
+        <div class="space-y-12 relative z-10">
+
+            <!-- Experience Node 1: GitHub Campus Expert -->
+            <div class="flex flex-col md:flex-row md:items-center gap-8 group">
+                <div class="md:w-1/2 flex md:justify-end">
+                    <div class="monitor-panel p-6 max-w-lg w-full transition-transform duration-300 group-hover:-translate-y-1 border-l-4 border-l-brand-dark">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-white border border-brand-border p-2 rounded">
+                                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-extrabold uppercase tracking-tight text-brand-dark">GitHub</h4>
+                                <p class="text-xs font-mono font-bold text-brand-accent">Campus Expert</p>
                             </div>
                         </div>
-                    </div>
-                </a>
-
-                <a href="projects/mtg-search-agent.html" style="text-decoration: none; color: inherit;">
-                    <div class="project-card">
-                        <div class="project-image"></div>
-                        <div class="project-content">
-                            <h3>MTG Card Search Agent</h3>
-                            <p class="project-meta">NLP / LLM • Jul 2025 - Present</p>
-                            <p class="project-description">Multi-agent natural-language search system over 33k+ Magic cards. Generates Scryfall queries from English with iterative refinement (up to 5 loops) and evaluator feedback. Improved throughput via parallel evaluation and score caching.</p>
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">OpenAI API</span>
-                                <span class="tag">PydanticAI</span>
-                                <span class="tag">pytest</span>
-                            </div>
+                        <p class="text-sm text-brand-textGray leading-relaxed mb-4">
+                            Selected for a competitive global program focused on technical leadership, open-source collaboration, and developer community-building.
+                        </p>
+                        <div class="flex items-center gap-2 text-[10px] font-mono font-bold text-brand-textGray/60 uppercase">
+                            <span class="material-symbols-outlined text-xs">calendar_today</span> October 2025 – Present
                         </div>
                     </div>
-                </a>
+                </div>
+                <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-dark rounded-full z-20 group-hover:scale-125 transition-transform"></div>
+                <div class="md:w-1/2 md:pl-12 hidden md:block">
+                    <span class="text-4xl font-black text-brand-border/40 select-none font-mono">01</span>
+                </div>
+            </div>
 
-                <a href="projects/paperscout.html" style="text-decoration: none; color: inherit;">
-                    <div class="project-card">
-                        <div class="project-image"></div>
-                        <div class="project-content">
-                            <h3>PaperScout</h3>
-                            <p class="project-meta">AI Research Assistant • Feb 2026 - Present</p>
-                            <p class="project-description">AI-powered research assistant for discovering and organizing arXiv papers. Built on Cloudflare Workers with Durable Objects for per-user SQLite persistence and Llama 3.3 70B for streaming summaries.</p>
-                            <div class="project-tags">
-                                <span class="tag">Cloudflare Workers</span>
-                                <span class="tag">Durable Objects</span>
-                                <span class="tag">Workers AI</span>
-                                <span class="tag">React</span>
+            <!-- Experience Node 2: SFSU Learning Assistant -->
+            <div class="flex flex-col md:flex-row md:items-center gap-8 group">
+                <div class="md:w-1/2 md:pr-12 hidden md:block text-right">
+                    <span class="text-4xl font-black text-brand-border/40 select-none font-mono">02</span>
+                </div>
+                <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-accent rounded-full z-20 group-hover:scale-125 transition-transform"></div>
+                <div class="md:w-1/2">
+                    <div class="monitor-panel p-6 max-w-lg w-full transition-transform duration-300 group-hover:-translate-y-1 border-l-4 border-l-brand-accent">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-white border border-brand-border p-2 rounded">
+                                <span class="material-symbols-outlined text-3xl text-brand-dark">school</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-extrabold uppercase tracking-tight text-brand-dark">San Francisco State University</h4>
+                                <p class="text-xs font-mono font-bold text-brand-accent">Learning Assistant – Data Structures</p>
                             </div>
                         </div>
+                        <p class="text-sm text-brand-textGray leading-relaxed mb-4">
+                            Supported a ~50-student course through active-learning sessions on algorithms, trees, and asymptotic analysis. Provided 1:1 debugging and problem-solving support.
+                        </p>
+                        <div class="flex items-center gap-2 text-[10px] font-mono font-bold text-brand-textGray/60 uppercase">
+                            <span class="material-symbols-outlined text-xs">calendar_today</span> January 2025 – May 2025
+                        </div>
                     </div>
-                </a>
+                </div>
             </div>
-            <div class="view-all-projects">
-                <a href="projects/" class="btn btn-secondary">View All Projects →</a>
-            </div>
-        </section>
 
-        <!-- Experience Section -->
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <h3>GitHub</h3>
-                    <p class="role">Campus Expert</p>
-                    <p class="date">October 2025 – Present</p>
-                    <p>Selected for a competitive global program focused on technical leadership, open-source collaboration, and developer community-building.</p>
+            <!-- Experience Node 3: ACM @ SFSU -->
+            <div class="flex flex-col md:flex-row md:items-center gap-8 group">
+                <div class="md:w-1/2 flex md:justify-end">
+                    <div class="monitor-panel p-6 max-w-lg w-full transition-transform duration-300 group-hover:-translate-y-1 border-l-4 border-l-brand-border">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-white border border-brand-border p-2 rounded">
+                                <span class="material-symbols-outlined text-3xl text-brand-dark">groups</span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-extrabold uppercase tracking-tight text-brand-dark">ACM @ SFSU</h4>
+                                <p class="text-xs font-mono font-bold text-brand-accent">Outreach Officer</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-brand-textGray leading-relaxed mb-4">
+                            Coordinating outreach and planning for a 3-day hackathon (~400 attendees); building relationships with external contacts and supporting event logistics.
+                        </p>
+                        <div class="flex items-center gap-2 text-[10px] font-mono font-bold text-brand-textGray/60 uppercase">
+                            <span class="material-symbols-outlined text-xs">calendar_today</span> February 2025 – Present
+                        </div>
+                    </div>
                 </div>
-                <div class="experience-item">
-                    <h3>San Francisco State University</h3>
-                    <p class="role">Learning Assistant – Data Structures</p>
-                    <p class="date">January 2025 – May 2025</p>
-                    <p>Supported a ~50-student course through active-learning sessions on algorithms, trees, and asymptotic analysis. Provided 1:1 debugging and problem-solving support.</p>
-                </div>
-                <div class="experience-item">
-                    <h3>ACM @ SFSU</h3>
-                    <p class="role">Outreach Officer</p>
-                    <p class="date">February 2025 – Present</p>
-                    <p>Coordinating outreach and planning for a 3-day hackathon (~400 attendees); building relationships with external contacts and supporting event logistics.</p>
+                <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-border rounded-full z-20 group-hover:scale-125 transition-transform"></div>
+                <div class="md:w-1/2 md:pl-12 hidden md:block">
+                    <span class="text-4xl font-black text-brand-border/40 select-none font-mono">03</span>
                 </div>
             </div>
-        </section>
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <div class="contact-section">
-                <h2>Let's Connect</h2>
-                <p class="contact-description">Based in San Francisco, always open to technical discussions, open-source collaboration, and building with others.</p>
-                <div class="social-grid">
-                    <a href="https://github.com/KyleOrtzow1" target="_blank" class="social-link">GitHub</a>
-                    <a href="https://www.linkedin.com/in/kyle-ortzow/" target="_blank" class="social-link">LinkedIn</a>
-                    <a href="mailto:kortzow@gmail.com" class="social-link">Email</a>
-                </div>
-                <a href="/src/assets/resume/kyle_ortzow_resume.pdf" class="resume-button" download>Download Resume</a>
-            </div>
-        </section>
-    </main>
+        </div>
+    </div>
+</div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Kyle Ortzow. Built with thoughtful design and clean code.</p>
-    </footer>
+<!-- Contact Section -->
+<section class="col-span-12 mt-4" id="contact">
+<div class="monitor-panel">
+    <div class="panel-header">
+        <span>Direct_Relay // Communication</span>
+        <span class="material-symbols-outlined text-sm">contact_support</span>
+    </div>
+    <div class="p-8 text-center max-w-2xl mx-auto">
+        <h2 class="text-xl font-bold uppercase mb-4 font-mono">Let's Connect</h2>
+        <p class="text-sm text-brand-textGray mb-8">Based in San Francisco, always open to technical discussions, open-source collaboration, and building with others.</p>
+        <div class="flex justify-center gap-8 mb-8">
+            <a class="text-brand-dark hover:text-brand-accent transition-colors" href="https://github.com/KyleOrtzow1" target="_blank" title="GitHub">
+                <svg aria-hidden="true" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+            </a>
+            <a class="text-brand-dark hover:text-brand-accent transition-colors" href="https://www.linkedin.com/in/kyle-ortzow/" target="_blank" title="LinkedIn">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+            </a>
+            <a class="material-symbols-outlined text-brand-dark hover:text-brand-accent text-4xl transition-colors" href="mailto:kortzow@gmail.com" title="Email">alternate_email</a>
+        </div>
+        <a class="inline-block px-12 py-3 bg-brand-dark text-white text-xs font-bold uppercase hover:bg-brand-accent transition-colors font-mono" href="/src/assets/resume/kyle_ortzow_resume.pdf" download>
+            Download Resume (PDF)
+        </a>
+    </div>
+</div>
+</section>
+
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="mt-12 border-t border-brand-border bg-white py-6">
+<div class="max-w-[1600px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-textGray uppercase font-bold font-mono">
+    <div>&copy; 2024 Kyle Ortzow. Built with thoughtful design and clean code.</div>
+    <div class="flex gap-4">
+        <span>Server Status: Online</span>
+        <span>Transmission: Secure</span>
+    </div>
+</div>
+</footer>
+
+<!-- Particle Animation -->
+<script>
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const mouse = { x: null, y: null, radius: 150 };
+
+window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = event.clientX - rect.left;
+    mouse.y = event.clientY - rect.top;
+});
+
+window.addEventListener('mouseout', () => {
+    mouse.x = null;
+    mouse.y = null;
+});
+
+function init() {
+    if (!canvas) return;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    particles = [];
+    const numberOfParticles = (canvas.width * canvas.height) / 15000;
+    for (let i = 0; i < numberOfParticles; i++) {
+        const size = Math.random() * 2 + 1;
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const directionX = (Math.random() * 1) - 0.5;
+        const directionY = (Math.random() * 1) - 0.5;
+        const color = '#b4cbb4';
+        particles.push({ x, y, directionX, directionY, size, color });
+    }
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.directionX;
+        p.y += p.directionY;
+
+        if (p.x > canvas.width || p.x < 0) p.directionX = -p.directionX;
+        if (p.y > canvas.height || p.y < 0) p.directionY = -p.directionY;
+
+        if (mouse.x !== null && mouse.y !== null) {
+            let dx = mouse.x - p.x;
+            let dy = mouse.y - p.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius) {
+                const force = (mouse.radius - distance) / mouse.radius;
+                p.x -= dx * force * 0.02;
+                p.y -= dy * force * 0.02;
+            }
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+
+        for (let j = i; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 150) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(180, 203, 180, ${1 - distance / 150})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.stroke();
+            }
+        }
+    }
+}
+
+window.addEventListener('resize', init);
+init();
+animate();
+</script>
 </body>
 </html>
