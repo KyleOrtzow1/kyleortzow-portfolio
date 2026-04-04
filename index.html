@@ -93,13 +93,37 @@
         <span>LOCATION: SAN FRANCISCO, CA</span>
     </div>
 </div>
-<div class="flex gap-6 uppercase font-bold text-brand-dark">
+<div class="hidden md:flex gap-6 uppercase font-bold text-brand-dark">
     <a class="hover:bg-brand-light px-2 py-1" href="#home">Home</a>
     <a class="hover:bg-brand-light px-2 py-1" href="#skills">Skills</a>
     <a class="hover:bg-brand-light px-2 py-1" href="#projects">Projects</a>
     <a class="hover:bg-brand-light px-2 py-1" href="#contact">Contact</a>
 </div>
+<button class="md:hidden text-brand-dark" id="mobile-menu-btn" aria-label="Toggle menu">
+    <span class="material-symbols-outlined">menu</span>
+</button>
 </nav>
+<div class="hidden border-b border-brand-border bg-white px-4 py-3 md:hidden" id="mobile-menu">
+    <div class="flex flex-col gap-2 text-xs font-mono uppercase font-bold text-brand-dark">
+        <a class="hover:bg-brand-light px-3 py-2" href="#home">Home</a>
+        <a class="hover:bg-brand-light px-3 py-2" href="#skills">Skills</a>
+        <a class="hover:bg-brand-light px-3 py-2" href="#projects">Projects</a>
+        <a class="hover:bg-brand-light px-3 py-2" href="#contact">Contact</a>
+    </div>
+</div>
+<script>
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+    this.querySelector('span').textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+});
+document.querySelectorAll('#mobile-menu a').forEach(function(link) {
+    link.addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.add('hidden');
+        document.getElementById('mobile-menu-btn').querySelector('span').textContent = 'menu';
+    });
+});
+</script>
 
 <main class="p-4 max-w-[1600px] mx-auto">
 <div class="dashboard-grid">
@@ -115,7 +139,7 @@
 </div>
 <div class="p-8 md:p-12 flex flex-col justify-center h-full relative z-10">
     <div class="text-[10px] text-brand-accent font-bold mb-2 font-mono">&gt; SOFTWARE ENGINEER</div>
-    <h1 class="text-5xl md:text-7xl font-extrabold text-brand-dark mb-4 tracking-tighter">Kyle Ortzow</h1>
+    <h1 class="text-3xl sm:text-5xl md:text-7xl font-extrabold text-brand-dark mb-4 tracking-tighter">Kyle Ortzow</h1>
     <p class="text-sm md:text-lg text-brand-textGray max-w-3xl leading-relaxed border-l-2 border-brand-light pl-6 italic bg-white/40 backdrop-blur-[2px]">
         CS student (SFSU, Dec 2026) building reliable API-driven systems and ML/LLM-powered software. Daily Linux + Docker user.
     </p>
@@ -141,7 +165,7 @@
             <div class="text-[8px] text-brand-accent uppercase">Based</div>
         </div>
     </div>
-    <div class="mt-10 flex gap-4 relative z-10 font-mono">
+    <div class="mt-10 flex flex-wrap gap-4 relative z-10 font-mono">
         <a class="px-6 py-3 bg-brand-dark text-white text-xs uppercase font-bold hover:bg-brand-accent transition-colors flex items-center gap-2" href="#projects">
             <span class="material-symbols-outlined text-sm">visibility</span> View My Work
         </a>
@@ -365,7 +389,7 @@
 
             <!-- Experience Node 1: GitHub Campus Expert -->
             <div class="flex flex-col md:flex-row md:items-center gap-8 group">
-                <div class="md:w-1/2 flex md:justify-end">
+                <div class="pl-12 md:pl-0 md:w-1/2 flex md:justify-end">
                     <div class="monitor-panel p-6 max-w-lg w-full transition-transform duration-300 group-hover:-translate-y-1 border-l-4 border-l-brand-dark">
                         <div class="flex items-center gap-4 mb-3">
                             <div class="bg-white border border-brand-border p-2 rounded">
@@ -396,7 +420,7 @@
                     <span class="text-4xl font-black text-brand-border/40 select-none font-mono">02</span>
                 </div>
                 <div class="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-brand-accent rounded-full z-20 group-hover:scale-125 transition-transform"></div>
-                <div class="md:w-1/2">
+                <div class="pl-12 md:pl-0 md:w-1/2">
                     <div class="monitor-panel p-6 max-w-lg w-full transition-transform duration-300 group-hover:-translate-y-1 border-l-4 border-l-brand-accent">
                         <div class="flex items-center gap-4 mb-3">
                             <div class="bg-white border border-brand-border p-2 rounded">
@@ -419,7 +443,7 @@
 
             <!-- Experience Node 3: ACM @ SFSU -->
             <div class="flex flex-col md:flex-row md:items-center gap-8 group">
-                <div class="md:w-1/2 flex md:justify-end">
+                <div class="pl-12 md:pl-0 md:w-1/2 flex md:justify-end">
                     <div class="monitor-panel p-6 max-w-lg w-full transition-transform duration-300 group-hover:-translate-y-1 border-l-4 border-l-brand-border">
                         <div class="flex items-center gap-4 mb-3">
                             <div class="bg-white border border-brand-border p-2 rounded">
