@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTG Card Search Agent | Kyle Ortzow</title>
+    <title>Oracle Search | Kyle Ortzow</title>
     <link rel="icon" type="image/x-icon" href="../src/assets/favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="../src/assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../src/assets/favicon/favicon-16x16.png">
@@ -80,132 +80,451 @@
     <!-- Hero Panel -->
     <section class="col-span-12 monitor-panel">
         <div class="panel-header">
-            <span>PROJECT_MODULE // MTG_SEARCH_AGENT</span>
-            <span class="material-symbols-outlined text-sm">psychology</span>
+            <span>PROJECT_MODULE // ORACLE_SEARCH</span>
+            <span class="material-symbols-outlined text-sm">manage_search</span>
         </div>
         <div class="p-8 md:p-12">
-            <p class="text-[10px] text-brand-accent font-bold font-mono">&gt; NLP / LLM SYSTEMS</p>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-brand-dark">MTG Card Search Agent</h1>
-            <p class="text-sm text-brand-textGray font-mono mt-2">NLP &amp; LLM Systems | July 2025 - Present</p>
-            <div class="flex flex-wrap gap-2 mt-4">
-                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Python</span>
+            <p class="text-[10px] text-brand-accent font-bold font-mono">&gt; FULL-STACK / LLM SYSTEMS</p>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-brand-dark">Oracle Search</h1>
+            <p class="text-sm text-brand-textGray font-mono mt-2">Full-Stack Web App &amp; LLM Orchestration | 2025 &ndash; Present</p>
+            <p class="text-sm text-brand-textGray mt-3 max-w-3xl leading-relaxed">
+                Users type something like &ldquo;cheap white-red removal for a Boros aggro Commander deck&rdquo; and the system iteratively translates that into Scryfall search syntax, fetches candidate cards, scores them with an LLM for both relevance and power-in-context, then decides &mdash; again with an LLM, but based on computed statistics rather than vibes &mdash; whether to refine and search again. The frontend shows the loop happening live over WebSocket.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5">
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Python 3.12</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">FastAPI</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">React 19</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">TypeScript</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">PostgreSQL 16</span>
                 <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">OpenAI API</span>
-                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">PydanticAI</span>
-                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">NLP</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">WebSocket</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Docker</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Azure</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Tailwind CSS 4</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Vite 6</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">SQLAlchemy 2</span>
+                <span class="px-2 py-1 bg-brand-light text-[10px] font-bold font-mono">Google OAuth</span>
             </div>
         </div>
     </section>
 
-    <!-- Overview Panel -->
-    <section class="col-span-12 mt-4 monitor-panel">
+    <!-- Problem & Motivation -->
+    <section class="col-span-12 lg:col-span-8 mt-4 monitor-panel">
         <div class="panel-header">
-            <span>System_Overview // Description</span>
-            <span class="material-symbols-outlined text-sm">description</span>
+            <span>Problem_Space // Motivation</span>
+            <span class="material-symbols-outlined text-sm">lightbulb</span>
         </div>
         <div class="p-6 text-sm text-brand-textGray leading-relaxed space-y-4">
-            <p>MTG Card Search Agent is a multi-agent natural-language search system that queries 33k+ Magic: The Gathering cards. Users can search in plain English, and the agent generates Scryfall queries to find the perfect cards.</p>
-            <p>This project demonstrates advanced LLM system design, agent orchestration, evaluation strategies, and performance optimization techniques.</p>
+            <p>Scryfall&rsquo;s search syntax is powerful but unforgiving &mdash; it expects exact operators like <code class="font-mono text-brand-dark bg-brand-light/40 px-1">ci&lt;=wr</code>, <code class="font-mono text-brand-dark bg-brand-light/40 px-1">t:creature</code>, <code class="font-mono text-brand-dark bg-brand-light/40 px-1">cmc&lt;=3</code>, <code class="font-mono text-brand-dark bg-brand-light/40 px-1">otag:removal</code>. Most players don&rsquo;t know it.</p>
+            <p>Pure LLM generation of a single Scryfall query is also fragile: the model often returns too few, too many, or off-target cards on the first try.</p>
+            <p>This project explores a middle path: let an LLM <em>iterate</em>. Generate a query, run it, evaluate results with a cheaper model, compute statistics, then let a third LLM call decide &mdash; based on the stats and original intent &mdash; whether to stop or refine and try again. The architecture is built around that loop, not around a single oracle call.</p>
         </div>
     </section>
 
-    <!-- Key Features -->
+    <!-- Deployment Status -->
+    <section class="col-span-12 lg:col-span-4 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>Deployment_Status // Azure</span>
+            <span class="material-symbols-outlined text-sm">cloud_done</span>
+        </div>
+        <div class="p-6 space-y-4">
+            <div>
+                <p class="text-[10px] font-bold font-mono text-brand-textGray uppercase mb-1">Backend</p>
+                <p class="text-sm font-bold text-brand-dark">Azure Container Apps</p>
+                <p class="text-[11px] text-brand-textGray">Single replica, GHCR-hosted prod image</p>
+            </div>
+            <div>
+                <p class="text-[10px] font-bold font-mono text-brand-textGray uppercase mb-1">Database</p>
+                <p class="text-sm font-bold text-brand-dark">Azure PostgreSQL Flexible Server</p>
+                <p class="text-[11px] text-brand-textGray">Burstable B1ms/B2s tier for beta</p>
+            </div>
+            <div>
+                <p class="text-[10px] font-bold font-mono text-brand-textGray uppercase mb-1">Frontend</p>
+                <p class="text-sm font-bold text-brand-dark">Azure Static Web Apps</p>
+                <p class="text-[11px] text-brand-textGray">CI-built Vite bundle, envsubst-driven CSP</p>
+            </div>
+            <div class="mt-2 pt-4 border-t border-brand-border">
+                <p class="text-[10px] font-bold font-mono text-brand-accent uppercase">Status: Closed Beta</p>
+                <p class="text-[11px] text-brand-textGray mt-1">Two-user scale. Email allowlist via BETA_WHITELIST_EMAILS. OpenAI key is dashboard-capped.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Search Loop -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>Core_Algorithm // The_Search_Loop</span>
+            <span class="material-symbols-outlined text-sm">loop</span>
+        </div>
+        <div class="p-6">
+            <p class="text-sm text-brand-textGray mb-6 max-w-3xl">Each user query triggers an agentic loop capped at 5 iterations. The loop is driven by statistics and LLM judgment &mdash; not hand-coded thresholds. Every step streams live to the browser.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="border border-brand-border rounded p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs font-bold font-mono bg-brand-dark text-white px-1.5 py-0.5 shrink-0">01</span>
+                        <span class="text-xs font-bold text-brand-dark">Query Generator</span>
+                    </div>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">LLM converts natural language + active filters + prior-loop stats into Scryfall syntax. Can call a <code class="font-mono">tag_search</code> tool for fuzzy Scryfall tag lookups.</p>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs font-bold font-mono bg-brand-dark text-white px-1.5 py-0.5 shrink-0">02</span>
+                        <span class="text-xs font-bold text-brand-dark">Filter Injection + Scryfall Fetch</span>
+                    </div>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Deterministically prepends color/format/CMC/type syntax so the LLM never duplicates constraints. Async, rate-limited, paginated Scryfall call. Cache check separates new from already-scored cards.</p>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs font-bold font-mono bg-brand-dark text-white px-1.5 py-0.5 shrink-0">03</span>
+                        <span class="text-xs font-bold text-brand-dark">Card Evaluator</span>
+                    </div>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Cheaper LLM scores new cards in parallel batches (semaphore-capped at 30 in-flight calls). Each card gets <code class="font-mono">relevant: bool</code>, <code class="font-mono">power_score: 1&ndash;10</code>, and one-line reasoning.</p>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs font-bold font-mono bg-brand-dark text-white px-1.5 py-0.5 shrink-0">04</span>
+                        <span class="text-xs font-bold text-brand-dark">Stop / Continue Decision</span>
+                    </div>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">LLM reads the original query, full <code class="font-mono">EvalStats</code> (relevance %, score distribution, avg CMC, color/type breakdown, cache hits), then emits <code class="font-mono">should_continue</code> and refinement hints for the next generator.</p>
+                </div>
+            </div>
+            <div class="mt-4 p-3 bg-brand-light/20 border border-brand-border rounded font-mono text-[11px] text-brand-textGray">
+                <strong class="text-brand-dark">Hard cap:</strong> MAX_SEARCH_LOOPS = 5 &nbsp;&middot;&nbsp; <strong class="text-brand-dark">Output:</strong> Top cards ranked by power_score (relevant-only subset)
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineering Highlights -->
     <section class="col-span-12 mt-4">
         <div class="panel-header rounded border border-brand-border">
-            <span>Key Features / Capabilities</span>
+            <span>Engineering_Highlights // What_Makes_It_Interesting</span>
             <span class="material-symbols-outlined text-sm">star</span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+
             <div class="monitor-panel">
                 <div class="panel-header">
-                    <span>Natural Language Search</span>
+                    <span>No Agent Framework</span>
+                    <span class="material-symbols-outlined text-xs">code</span>
                 </div>
                 <div class="p-4">
-                    <p class="text-[11px] text-brand-textGray leading-relaxed">Convert English queries into Scryfall queries. Ask for "red creatures with flying" and get exactly that.</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Three distinct LLM roles wired up with the raw OpenAI Python SDK and Pydantic structured outputs. No LangChain, LangGraph, or PydanticAI &mdash; deliberately. The orchestration logic is explicit Python, not a framework abstraction.</p>
                 </div>
             </div>
+
             <div class="monitor-panel">
                 <div class="panel-header">
-                    <span>Iterative Refinement</span>
+                    <span>Statistical Decision-Making</span>
+                    <span class="material-symbols-outlined text-xs">analytics</span>
                 </div>
                 <div class="p-4">
-                    <p class="text-[11px] text-brand-textGray leading-relaxed">Up to 5 refinement loops with evaluator feedback. The agent improves results based on relevance scores.</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">The stop/continue LLM call is fed a computed <code class="font-mono text-brand-dark">EvalStats</code> payload &mdash; relevance %, score distribution, average CMC, color/type breakdowns, cache hit count &mdash; not just a text summary. Decisions are grounded in numbers.</p>
                 </div>
             </div>
+
             <div class="monitor-panel">
                 <div class="panel-header">
-                    <span>Parallel Evaluation</span>
+                    <span>WebSocket-First UX</span>
+                    <span class="material-symbols-outlined text-xs">stream</span>
                 </div>
                 <div class="p-4">
-                    <p class="text-[11px] text-brand-textGray leading-relaxed">Improved throughput by parallelizing relevance scoring across multiple cards simultaneously.</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">The frontend never polls. It connects to <code class="font-mono text-brand-dark">/ws/search</code> and renders nine live typed events as the loop runs. The protocol already defines <code class="font-mono text-brand-dark">feedback</code>, <code class="font-mono text-brand-dark">card_vote</code>, and <code class="font-mono text-brand-dark">override_decision</code> message types for future human-in-the-loop extensions.</p>
                 </div>
             </div>
+
             <div class="monitor-panel">
                 <div class="panel-header">
-                    <span>Smart Caching</span>
+                    <span>Pydantic &rarr; TypeScript Codegen</span>
+                    <span class="material-symbols-outlined text-xs">sync_alt</span>
                 </div>
                 <div class="p-4">
-                    <p class="text-[11px] text-brand-textGray leading-relaxed">Deduplication and score caching skip previously seen cards, avoiding redundant API calls.</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">A custom <code class="font-mono text-brand-dark">scripts/gen_types.py</code> walks <code class="font-mono text-brand-dark">backend/app/schemas/</code>, calls <code class="font-mono text-brand-dark">TypeAdapter(T).json_schema()</code> on each Pydantic model, merges to a single JSON Schema doc, and feeds it to <code class="font-mono text-brand-dark">json-schema-to-typescript</code>. Freshness enforced by a pre-commit hook and a dedicated CI job that fails on drift.</p>
                 </div>
             </div>
+
             <div class="monitor-panel">
                 <div class="panel-header">
-                    <span>CLI &amp; Module</span>
+                    <span>Refresh Token Rotation</span>
+                    <span class="material-symbols-outlined text-xs">key</span>
                 </div>
                 <div class="p-4">
-                    <p class="text-[11px] text-brand-textGray leading-relaxed">Packaged as an installable Python module with a command-line interface for easy use.</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Each refresh token carries a <code class="font-mono text-brand-dark">jti</code> claim whose SHA-256 hash is persisted in Postgres. On every <code class="font-mono text-brand-dark">/api/auth/refresh</code> the presented token is verified against the stored hash, the old row is revoked, and a replacement is issued. Logout revokes before clearing the cookie.</p>
                 </div>
             </div>
+
             <div class="monitor-panel">
                 <div class="panel-header">
-                    <span>Comprehensive Testing</span>
+                    <span>Real Postgres in CI Tests</span>
+                    <span class="material-symbols-outlined text-xs">science</span>
                 </div>
                 <div class="p-4">
-                    <p class="text-[11px] text-brand-textGray leading-relaxed">pytest suite covering config, events, orchestrator, models, tools, and agents.</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Test suite uses <code class="font-mono text-brand-dark">testcontainers</code> to spin up a real Postgres instance in CI rather than mocking, with function-scoped transaction rollback via SAVEPOINTs for isolation. No mocked SQL in the test surface.</p>
                 </div>
             </div>
+
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Fuzzy Scryfall Tag Tool</span>
+                    <span class="material-symbols-outlined text-xs">search</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">On backend startup the app fetches Scryfall&rsquo;s Tagger tag page and parses oracle tag slugs, with a bundled <code class="font-mono text-brand-dark">tags.json</code> fallback if the fetch fails. <code class="font-mono text-brand-dark">thefuzz token_sort_ratio</code> powers a function-call tool exposed to the query generator LLM so it can ground tags like <em>&ldquo;removal&rdquo;</em> to real <code class="font-mono text-brand-dark">otag:</code> values.</p>
+                </div>
+            </div>
+
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Strict Production Validation</span>
+                    <span class="material-symbols-outlined text-xs">verified_user</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">With <code class="font-mono text-brand-dark">APP_ENV=production</code> the backend refuses to boot if <code class="font-mono text-brand-dark">JWT_SECRET</code> is weak, <code class="font-mono text-brand-dark">AUTH_COOKIE_SECURE=false</code>, required secrets are missing, or <code class="font-mono text-brand-dark">CORS_ALLOW_ORIGINS</code> includes localhost. The Vite frontend has a parallel <code class="font-mono text-brand-dark">assertProductionEnv()</code> that throws at app boot on any bad <code class="font-mono text-brand-dark">VITE_*</code> value.</p>
+                </div>
+            </div>
+
+            <div class="monitor-panel">
+                <div class="panel-header">
+                    <span>Polyglot Monorepo</span>
+                    <span class="material-symbols-outlined text-xs">folder_open</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-[11px] text-brand-textGray leading-relaxed"><code class="font-mono text-brand-dark">just dev</code> brings up Postgres, backend (<code class="font-mono text-brand-dark">uvicorn --reload</code>), and frontend (Vite HMR) via Docker Compose. Secrets live outside the repo at <code class="font-mono text-brand-dark">$WORKTREE_SECRET_ROOT/&lt;repo&gt;/.env</code> so multiple git worktrees share one env file.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- Technical Highlights -->
-    <section class="col-span-12 mt-4 monitor-panel">
+    <!-- Architecture + WebSocket Protocol -->
+    <section class="col-span-12 lg:col-span-7 mt-4 monitor-panel">
         <div class="panel-header">
-            <span>Technical_Analysis // Deep_Dive</span>
-            <span class="material-symbols-outlined text-sm">analytics</span>
-        </div>
-        <div class="p-6 space-y-6">
-            <div class="border-l-4 border-l-brand-accent pl-6">
-                <h4 class="text-sm font-bold text-brand-dark mb-1">Agent Orchestration</h4>
-                <p class="text-sm text-brand-textGray leading-relaxed">Multi-agent system coordinating search, evaluation, and refinement. Uses PydanticAI for structured outputs and orchestration, ensuring reliable communication between agents.</p>
-            </div>
-            <div class="border-l-4 border-l-brand-accent pl-6">
-                <h4 class="text-sm font-bold text-brand-dark mb-1">Iterative Refinement Loop</h4>
-                <p class="text-sm text-brand-textGray leading-relaxed">Implements feedback loops where an evaluator agent scores results (1&ndash;10 relevance) and guides the search agent to refine queries. Up to 5 iterations improve result quality.</p>
-            </div>
-            <div class="border-l-4 border-l-brand-accent pl-6">
-                <h4 class="text-sm font-bold text-brand-dark mb-1">Performance Optimization</h4>
-                <p class="text-sm text-brand-textGray leading-relaxed">Parallel evaluation processes multiple cards concurrently. Deduplication and caching skip redundant work, significantly reducing execution time.</p>
-            </div>
-            <div class="border-l-4 border-l-brand-accent pl-6">
-                <h4 class="text-sm font-bold text-brand-dark mb-1">Production Packaging</h4>
-                <p class="text-sm text-brand-textGray leading-relaxed">Structured as an installable module with CLI entry points, making it easy to use and distribute.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- What I Learned -->
-    <section class="col-span-12 mt-4 monitor-panel">
-        <div class="panel-header">
-            <span>Knowledge_Log // Insights</span>
-            <span class="material-symbols-outlined text-sm">lightbulb</span>
+            <span>System_Architecture // Overview</span>
+            <span class="material-symbols-outlined text-sm">architecture</span>
         </div>
         <div class="p-6">
-            <ul class="space-y-3 text-sm text-brand-textGray font-mono">
-                <li><strong class="text-brand-dark">LLM Agent Design:</strong> Building agents that think step-by-step and refine outputs based on feedback.</li>
-                <li><strong class="text-brand-dark">Evaluation Metrics:</strong> Designing relevance scoring systems to guide agent behavior and measure success.</li>
-                <li><strong class="text-brand-dark">Concurrency:</strong> Parallel evaluation for throughput improvement without sacrificing quality.</li>
-                <li><strong class="text-brand-dark">Structured Outputs:</strong> Using Pydantic for type-safe, validated LLM outputs.</li>
-                <li><strong class="text-brand-dark">Testing ML Systems:</strong> Writing pytest suites for complex multi-agent systems.</li>
-            </ul>
+            <pre class="text-[10px] text-brand-textGray font-mono leading-relaxed overflow-x-auto whitespace-pre">  ┌──────────────────────────────┐
+  │  React 19 + Vite SPA         │
+  │  (Azure Static Web Apps)     │
+  └──────────────┬───────────────┘
+                 │  HTTPS (REST) + WSS (search stream)
+                 ▼
+  ┌──────────────────────────────┐
+  │  FastAPI backend (1 replica) │
+  │  Azure Container Apps        │
+  │  ┌────────────────────────┐  │
+  │  │  Search Orchestrator   │  │
+  │  │   ├─ Query Generator   │──┼──▶ OpenAI (mini-class)
+  │  │   ├─ Card Evaluator    │──┼──▶ OpenAI (nano, parallel)
+  │  │   ├─ Stats Computation │  │
+  │  │   └─ Stop/Continue     │──┼──▶ OpenAI (mini-class)
+  │  └────────────────────────┘  │
+  │           │   │              │
+  │           │   └─ Tag tool ───┼──▶ Scryfall Tagger (startup)
+  │           ▼                  │
+  │  httpx async ────────────────┼──▶ Scryfall REST API
+  │           │                  │
+  │  SQLAlchemy async ───────────┼──▶ Postgres (Azure)
+  └──────────────────────────────┘</pre>
+            <p class="text-[11px] text-brand-textGray mt-4 leading-relaxed">The backend coordinates three distinct LLM calls, rate-limited Scryfall pagination, fuzzy tag matching, and per-user search history behind Google OAuth. Active search state lives in <code class="font-mono text-brand-dark">app.state.active_searches</code> &mdash; a documented constraint that bounds the beta to one worker.</p>
+        </div>
+    </section>
+
+    <!-- WebSocket Protocol -->
+    <section class="col-span-12 lg:col-span-5 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>WebSocket_Protocol // Live_Events</span>
+            <span class="material-symbols-outlined text-sm">wifi</span>
+        </div>
+        <div class="p-6 space-y-4">
+            <div>
+                <p class="text-[10px] font-bold font-mono text-brand-textGray uppercase mb-2">Client &rarr; Server</p>
+                <div class="space-y-1.5">
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-dark text-white text-[9px] font-mono font-bold shrink-0">start_search</span><span class="text-[11px] text-brand-textGray">Kick off a new search</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-dark text-white text-[9px] font-mono font-bold shrink-0">cancel</span><span class="text-[11px] text-brand-textGray">Abort an in-flight search</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-border text-brand-textGray text-[9px] font-mono font-bold shrink-0">feedback</span><span class="text-[11px] text-brand-textGray italic">future: human-in-the-loop signal</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-border text-brand-textGray text-[9px] font-mono font-bold shrink-0">card_vote</span><span class="text-[11px] text-brand-textGray italic">future: per-card relevance vote</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-border text-brand-textGray text-[9px] font-mono font-bold shrink-0">override_decision</span><span class="text-[11px] text-brand-textGray italic">future: force stop/continue</span></div>
+                </div>
+            </div>
+            <div class="border-t border-brand-border pt-4">
+                <p class="text-[10px] font-bold font-mono text-brand-textGray uppercase mb-2">Server &rarr; Client</p>
+                <div class="space-y-1.5">
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">search_started</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">loop_started</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">query_generated</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">scryfall_results</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">evaluation_progress</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">evaluation_complete</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">decision</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">search_complete</span></div>
+                    <div class="flex items-center gap-2"><span class="px-1.5 py-0.5 bg-brand-accent text-white text-[9px] font-mono font-bold shrink-0">error / cancelled</span></div>
+                </div>
+            </div>
+            <div class="border-t border-brand-border pt-3">
+                <p class="text-[10px] font-mono text-brand-textGray"><strong class="text-brand-dark">Auth:</strong> HTTP-only refresh cookie &mdash; not a URL token</p>
+                <p class="text-[10px] font-mono text-brand-textGray mt-1"><strong class="text-brand-dark">Endpoint:</strong> wss://&lt;host&gt;/ws/search</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Full Breakdown -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>Tech_Stack // Full_Breakdown</span>
+            <span class="material-symbols-outlined text-sm">layers</span>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <p class="text-[10px] font-bold font-mono text-brand-accent uppercase mb-3 border-b border-brand-border pb-1">Backend</p>
+                    <ul class="space-y-1.5 text-[11px] text-brand-textGray font-mono">
+                        <li><strong class="text-brand-dark">Python 3.12</strong> / FastAPI (fully async)</li>
+                        <li><strong class="text-brand-dark">Uvicorn</strong> &mdash; single worker in prod</li>
+                        <li><strong class="text-brand-dark">PostgreSQL 16</strong> + asyncpg driver</li>
+                        <li><strong class="text-brand-dark">SQLAlchemy 2.0</strong> async ORM</li>
+                        <li><strong class="text-brand-dark">Alembic</strong> &mdash; auto-applied on container start</li>
+                        <li><strong class="text-brand-dark">pydantic-settings</strong> (Pydantic v2)</li>
+                        <li><strong class="text-brand-dark">OpenAI SDK</strong> &mdash; structured outputs + function tools</li>
+                        <li><strong class="text-brand-dark">httpx</strong> &mdash; async, rate-limited Scryfall client</li>
+                        <li><strong class="text-brand-dark">Google OAuth 2.0</strong> (google-auth) + JWT (python-jose)</li>
+                        <li><strong class="text-brand-dark">thefuzz[speedup]</strong> &mdash; token_sort_ratio tag matching</li>
+                        <li><strong class="text-brand-dark">uv</strong> package manager + committed lockfile</li>
+                        <li><strong class="text-brand-dark">ruff</strong> (lint/format), <strong class="text-brand-dark">pyright</strong> (standard mode)</li>
+                        <li><strong class="text-brand-dark">pytest</strong> + pytest-asyncio + testcontainers + httpx-ws</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-[10px] font-bold font-mono text-brand-accent uppercase mb-3 border-b border-brand-border pb-1">Frontend</p>
+                    <ul class="space-y-1.5 text-[11px] text-brand-textGray font-mono">
+                        <li><strong class="text-brand-dark">TypeScript</strong> (strict, noUncheckedIndexedAccess, noImplicitOverride)</li>
+                        <li><strong class="text-brand-dark">React 19</strong></li>
+                        <li><strong class="text-brand-dark">React Router 7</strong></li>
+                        <li><strong class="text-brand-dark">Vite 6</strong> build tool</li>
+                        <li><strong class="text-brand-dark">Tailwind CSS 4</strong></li>
+                        <li><strong class="text-brand-dark">Vitest</strong> + @testing-library/react + happy-dom</li>
+                        <li><strong class="text-brand-dark">Biome</strong> (lint/format)</li>
+                        <li><strong class="text-brand-dark">pnpm 9</strong> / Node 22 LTS</li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="text-[10px] font-bold font-mono text-brand-accent uppercase mb-3 border-b border-brand-border pb-1">Infrastructure &amp; Tooling</p>
+                    <ul class="space-y-1.5 text-[11px] text-brand-textGray font-mono">
+                        <li><strong class="text-brand-dark">Docker</strong> &mdash; multi-stage dev/prod Dockerfiles</li>
+                        <li><strong class="text-brand-dark">Docker Compose</strong> &mdash; one-command local dev</li>
+                        <li><strong class="text-brand-dark">Nginx</strong> &mdash; envsubst CSP + SPA fallback</li>
+                        <li><strong class="text-brand-dark">Azure Container Apps</strong> &mdash; backend runtime</li>
+                        <li><strong class="text-brand-dark">Azure PostgreSQL Flexible Server</strong></li>
+                        <li><strong class="text-brand-dark">Azure Static Web Apps</strong> &mdash; frontend</li>
+                        <li><strong class="text-brand-dark">GitHub Actions</strong> &mdash; 7 parallel CI jobs</li>
+                        <li><strong class="text-brand-dark">GHCR</strong> &mdash; container image registry</li>
+                        <li><strong class="text-brand-dark">just</strong> task runner (~20 targets)</li>
+                        <li><strong class="text-brand-dark">pre-commit</strong> + Gitleaks (secret scanning)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notable Constraints & Decisions -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>Implementation_Details // Notable_Constraints</span>
+            <span class="material-symbols-outlined text-sm">settings</span>
+        </div>
+        <div class="p-6 space-y-5">
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Two-Tier Model Strategy</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed">Mini-class model for the low-volume query generator and decision calls; nano model for the high-volume per-card evaluation. Evaluations run in parallel batches, semaphore-capped at 30 in-flight OpenAI calls per search on a single-vCPU host &mdash; sized to avoid tail-latency inflation rather than to maximize throughput.</p>
+            </div>
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Single-Worker Constraint (Documented and Intentional)</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed">Production Uvicorn runs with <code class="font-mono text-brand-dark">--workers 1</code>. Active search state (reconnect/cancel) lives in <code class="font-mono text-brand-dark">app.state.active_searches</code> in process memory, so scaling out requires distributed coordination first. One active search per user is enforced at the API level; combined with single-worker, this keeps reconnect and cancel state coherent.</p>
+            </div>
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Connection Pool Sizing</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed"><code class="font-mono text-brand-dark">db_pool_size=10 + db_max_overflow=5</code> is sized against the Burstable Postgres tier (<code class="font-mono text-brand-dark">workers &times; (pool + overflow) &le; max_connections</code>), leaving headroom for Alembic on boot and operator psql sessions.</p>
+            </div>
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Build-Time vs Runtime Config</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed"><code class="font-mono text-brand-dark">VITE_*</code> values are baked into the JS bundle at build time &mdash; the prod image cannot be repointed at a different backend without a rebuild. The Nginx CSP is runtime-templated via <code class="font-mono text-brand-dark">envsubst</code> from <code class="font-mono text-brand-dark">VITE_API_URL</code> / <code class="font-mono text-brand-dark">VITE_WS_URL</code> so the <code class="font-mono text-brand-dark">connect-src</code> always matches the deployed backend. CSP and security headers are mirrored in both <code class="font-mono text-brand-dark">nginx.conf</code> and <code class="font-mono text-brand-dark">staticwebapp.config.json</code> so both hosting paths enforce the same policy.</p>
+            </div>
+            <div class="border-l-4 border-l-brand-accent pl-6">
+                <h4 class="text-sm font-bold text-brand-dark mb-1">Input Bounds Before Any LLM Call</h4>
+                <p class="text-sm text-brand-textGray leading-relaxed">Query text is trimmed and capped at 500 chars; color and type lists are bounded by enum size and deduplicated; <code class="font-mono text-brand-dark">max_cmc</code> must be non-negative. The backend never spends an OpenAI token on malformed input.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CI/CD Pipeline -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>CI_CD_Pipeline // GitHub_Actions</span>
+            <span class="material-symbols-outlined text-sm">rocket_launch</span>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="border border-brand-border rounded p-4">
+                    <p class="text-[10px] font-bold font-mono text-brand-accent uppercase mb-3">PR Gate (ci.yml)</p>
+                    <ul class="space-y-1.5 text-[11px] text-brand-textGray leading-relaxed">
+                        <li>Backend lint &mdash; ruff check + ruff format --check</li>
+                        <li>Backend typecheck &mdash; pyright</li>
+                        <li>Backend tests &mdash; pytest + real Postgres via testcontainers</li>
+                        <li>Frontend lint &mdash; biome ci</li>
+                        <li>Frontend typecheck &mdash; tsc --noEmit</li>
+                        <li>Frontend tests &mdash; vitest run</li>
+                        <li>Generated-types drift check</li>
+                        <li>Prod container build verification</li>
+                    </ul>
+                    <p class="text-[10px] font-mono text-brand-textGray mt-3 italic">7 parallel jobs, path-filtered</p>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <p class="text-[10px] font-bold font-mono text-brand-accent uppercase mb-3">Backend Deploy</p>
+                    <ul class="space-y-1.5 text-[11px] text-brand-textGray leading-relaxed">
+                        <li>Triggers on successful CI on main</li>
+                        <li>Builds prod Dockerfile target</li>
+                        <li>Tags with short commit SHA</li>
+                        <li>Pushes to GHCR</li>
+                        <li>Azure rollout is a manual <code class="font-mono">az containerapp update</code> step due to Entra tenant restrictions on service-principal creation</li>
+                    </ul>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <p class="text-[10px] font-bold font-mono text-brand-accent uppercase mb-3">Frontend Deploy</p>
+                    <ul class="space-y-1.5 text-[11px] text-brand-textGray leading-relaxed">
+                        <li>Triggers on successful CI on main</li>
+                        <li>Substitutes <code class="font-mono">__API_ORIGIN__</code> / <code class="font-mono">__WS_ORIGIN__</code> placeholders</li>
+                        <li>Builds with <code class="font-mono">VITE_*</code> secrets from GitHub Secrets</li>
+                        <li>Deploys via Azure/static-web-apps-deploy@v1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Schema -->
+    <section class="col-span-12 mt-4 monitor-panel">
+        <div class="panel-header">
+            <span>Database_Schema // Postgres</span>
+            <span class="material-symbols-outlined text-sm">table</span>
+        </div>
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="border border-brand-border rounded p-4">
+                    <p class="text-[10px] font-bold font-mono text-brand-dark uppercase mb-2">users</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Google identity, email, display name, avatar URL</p>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <p class="text-[10px] font-bold font-mono text-brand-dark uppercase mb-2">user_preferences</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Per-user default filters (color, format, max CMC) stored as JSONB</p>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <p class="text-[10px] font-bold font-mono text-brand-dark uppercase mb-2">refresh_tokens</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">SHA-256 hash of JWT <code class="font-mono">jti</code>, expires_at, revoked_at. Enables rotation and server-side revocation.</p>
+                </div>
+                <div class="border border-brand-border rounded p-4">
+                    <p class="text-[10px] font-bold font-mono text-brand-dark uppercase mb-2">search_sessions</p>
+                    <p class="text-[11px] text-brand-textGray leading-relaxed">Query text, filters JSONB, loops completed, total cards evaluated, top cards JSONB, status, timestamps</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -215,8 +534,8 @@
             <span>External_Links // Resources</span>
             <span class="material-symbols-outlined text-sm">link</span>
         </div>
-        <div class="p-6 flex gap-4">
-            <a href="https://github.com/KyleOrtzow1/SearchAgent" target="_blank" class="px-6 py-3 bg-brand-dark text-white text-xs uppercase font-bold hover:bg-brand-accent transition-colors font-mono flex items-center gap-2">
+        <div class="p-6 flex flex-wrap gap-4">
+            <a href="https://github.com/KyleOrtzow1/mtg-search-agent" target="_blank" class="px-6 py-3 bg-brand-dark text-white text-xs uppercase font-bold hover:bg-brand-accent transition-colors font-mono flex items-center gap-2">
                 <span class="material-symbols-outlined text-sm">code</span>
                 View on GitHub
             </a>
@@ -229,7 +548,7 @@
 <!-- Footer -->
 <footer class="mt-12 border-t border-brand-border bg-white py-6">
     <div class="max-w-[1600px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-textGray uppercase font-bold font-mono">
-        <div>&copy; 2024 Kyle Ortzow. Built with thoughtful design and clean code.</div>
+        <div>&copy; 2025 Kyle Ortzow. Built with thoughtful design and clean code.</div>
         <div class="flex gap-4">
             <span>Server Status: Online</span>
             <span>Transmission: Secure</span>
